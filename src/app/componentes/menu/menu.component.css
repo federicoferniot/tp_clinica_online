@@ -1,0 +1,40 @@
+.side-nav-left {
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+}
+.spacer {
+    flex: 1 1 auto;
+}
+
+.color{
+    background-color: lightcoral;
+}
+
+.side-nav-content {
+    z-index: 1002;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300;
+    height: 100%;
+    overflow: auto;
+    overflow-y: none;
+    box-shadow: 0 2px 14px 0 rgba(130, 130, 130, 0.5);
+    background: #fff;
+    color: #555555 !important;
+}
+
+.backdrop {
+    position: fixed !important;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-drawer {
+    box-shadow: unset !important;
+}

@@ -1,0 +1,36 @@
+
+.imgcontainer {
+    text-align: center;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+    padding-right: 10px;
+}
+
+.login-main{
+    margin-top: 10%;
+    min-width: 40%;
+}
+
+.btn-cancelar {
+    margin-left: 1%;
+}
+
+mat-card {
+    box-shadow: 5px 5px black;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+}

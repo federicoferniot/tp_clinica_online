@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+    margin-top: 5%;
+    min-width: 50%;
+    min-height: 40%;
+}
+
+.tabla {
+    box-shadow: 5px 0px rebeccapurple;
+}
+
+.paginas {
+    box-shadow: 5px 5px rebeccapurple;
+}
+
+.busqueda {
+    display: flex;
+    margin-top: 1%;
+    background-color: white;
+    box-shadow: 5px 5px rebeccapurple;
+}
+
+table tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+table tr:nth-child(even) {
+    background-color: white;
+}
+
+.estado {
+    text-transform: capitalize;
+}

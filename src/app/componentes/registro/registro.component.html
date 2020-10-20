@@ -1,0 +1,134 @@
+<div fxLayout="row" fxLayoutAlign="center">
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Paciente" >
+            <mat-card class="main mat-elevation-z8">
+                <mat-card-header>
+                    <mat-card-title>Registrarse</mat-card-title>
+                </mat-card-header>
+                <form [formGroup]="formPaciente">
+                    <mat-card-content fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="nombre" matInput
+                                [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+                            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                                <div *ngIf="f.nombre.errors.required">Debe ingresar un nombre</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input formControlName="apellido" matInput
+                                [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }">
+                            <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                                <div *ngIf="f.apellido.errors.required">Debe ingresar un apellido</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Correo</mat-label>
+                            <input formControlName="correo" matInput
+                                [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
+                                <div *ngIf="f.correo.errors.required">Debe ingresar un correo</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Clave</mat-label>
+                            <input formControlName="clave" [type]="hide ? 'password' : 'text'" matInput
+                                [ngClass]="{ 'is-invalid': submitted && f.clave.errors }">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <div *ngIf="submitted && f.clave.errors" class="invalid-feedback">
+                                <div *ngIf="f.clave.errors.required">Debe ingresar una clave</div>
+                                <div *ngIf="f.clave.errors.minlength">La clave debe tener al menos 6 caracteres</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-label>Imagen Principal</mat-label>
+                        <div class="input-group">
+                            <input class="form-control" (change)="onChange($event)" formControlName="imagen1" type="file" accept="image/*">
+                        </div>
+                        <mat-label>Imagen Secundaria</mat-label>
+                        <div class="input-group">
+                            <input class="form-control" (change)="onChange2($event)" formControlName="imagen2" type="file" accept="image/*">
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button [disabled]="loading || formPaciente.invalid || !file1Listo || !file2Listo" mat-raised-button color="primary" (click)="registrarPaciente()">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Registrarse
+                        </button>
+                        <button routerLink="/Principal" mat-raised-button color="warn">
+                            Cancelar
+                        </button>
+                    </mat-card-actions>
+                </form>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Profesional">
+            <mat-card class="main mat-elevation-z8">
+                <mat-card-header>
+                    <mat-card-title>Registrarse</mat-card-title>
+                </mat-card-header>
+                <form [formGroup]="formProfesional">
+                    <mat-card-content fxLayout="column">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nombre</mat-label>
+                            <input formControlName="nombre" matInput
+                                [ngClass]="{ 'is-invalid': submitted && fP.nombre.errors }">
+                            <div *ngIf="submitted && fP.nombre.errors" class="invalid-feedback">
+                                <div *ngIf="fP.nombre.errors.required">Debe ingresar un nombre</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Apellido</mat-label>
+                            <input formControlName="apellido" matInput
+                                [ngClass]="{ 'is-invalid': submitted && fP.apellido.errors }">
+                            <div *ngIf="submitted && fP.apellido.errors" class="invalid-feedback">
+                                <div *ngIf="fP.apellido.errors.required">Debe ingresar un apellido</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Correo</mat-label>
+                            <input formControlName="correo" matInput
+                                [ngClass]="{ 'is-invalid': submitted && fP.correo.errors }">
+                            <mat-icon matSuffix>account_circle</mat-icon>
+                            <div *ngIf="submitted && fP.correo.errors" class="invalid-feedback">
+                                <div *ngIf="fP.correo.errors.required">Debe ingresar un correo</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Clave</mat-label>
+                            <input formControlName="clave" [type]="hide ? 'password' : 'text'" matInput
+                                [ngClass]="{ 'is-invalid': submitted && fP.clave.errors }">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <div *ngIf="submitted && fP.clave.errors" class="invalid-feedback">
+                                <div *ngIf="fP.clave.errors.required">Debe ingresar una clave</div>
+                                <div *ngIf="fP.clave.errors.minlength">La clave debe tener al menos 6 caracteres</div>
+                            </div>
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Especialidades</mat-label>
+                            <mat-select formControlName="especialidades" multiple>
+                              <mat-option *ngFor="let especialidad of listaEspecialidades" [value]="especialidad">{{especialidad}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>                          
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button [disabled]="loading || formProfesional.invalid" mat-raised-button color="primary" (click)="registrarProfesional()">
+                            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                            Registrarse
+                        </button>
+                        <button routerLink="/Principal" mat-raised-button color="warn">
+                            Cancelar
+                        </button>
+                    </mat-card-actions>
+                </form>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
+</div>

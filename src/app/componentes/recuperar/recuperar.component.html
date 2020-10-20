@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Recuperar clave</h2>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="form">
+        <mat-form-field appearance="outline">
+            <mat-label>Correo</mat-label>
+            <input matInput formControlName="correo" [ngClass]="{ 'is-invalid': f.correo.errors }">
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close cdkFocusInitial>Cancelar</button>
+  <button mat-button  [disabled]="form.invalid" [mat-dialog-close]="enviar()">Enviar</button>
+</mat-dialog-actions>

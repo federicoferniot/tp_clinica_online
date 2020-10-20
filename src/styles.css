@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;   background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c23b3b, #b4b5bb);
+    background: -o-linear-gradient(-135deg, #c23b3b, #b4b5bb);
+    background: -moz-linear-gradient(-135deg, #c23b3b, #b4b5bb);
+    background: linear-gradient(-135deg, #c23b3b, #b4b5bb);}
+.alerta{
+    position: fixed;
+    top: 10px;
+    left: 20vw;
+}

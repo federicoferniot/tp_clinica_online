@@ -1,0 +1,35 @@
+<mat-toolbar class="color">
+    <button *ngIf="isLoggedIn()" mat-icon-button (click)="toggleSideBar() ">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/Principal">
+        <mat-icon>home</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-drawer-container>
+    <mat-sidenav #sidenav class="side-nav-left" position="start" role="directory" [opened]="opened">
+        <div class="backdrop" (click)="opened = false"></div>
+        <div class="side-nav-content">
+            <mat-action-list>
+                <button mat-list-item (click)="toggleSideBar()">
+                    <mat-icon>keyboard_backspace</mat-icon>
+                </button>
+                <button *ngIf="role == 'admin'" mat-list-item routerLink="/AdministrarProfesionales">
+                    <span>Administrar Profesionales</span>
+                </button>
+                <button *ngIf="role == 'admin'" mat-list-item routerLink="/AltaAdministrador">
+                    <span>Alta Administrador</span>
+                </button>
+                <button mat-list-item routerLink="/Paciente">
+                    <span>Paciente</span>
+                </button>
+                <button mat-list-item routerLink="/Profesional">
+                    <span>Profesional</span>
+                </button>
+                <button mat-list-item (click)="salir()">
+                    <span>Salir</span>
+                </button>
+            </mat-action-list>
+        </div>
+    </mat-sidenav>
+</mat-drawer-container>
