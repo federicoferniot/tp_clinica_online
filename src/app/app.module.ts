@@ -19,14 +19,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSelectModule } from '@angular/material/select';
-import { MatPaginatorModule } from '@angular/material/paginator'
-import {MatSortModule} from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSortModule } from '@angular/material/sort';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 import { AngularFireModule } from "@angular/fire";
 import { AppComponent } from './app.component';
@@ -47,6 +49,7 @@ import { VerEspecialidadesComponent } from './componentes/ver-especialidades/ver
 import { AltaAdminComponent } from './componentes/alta-admin/alta-admin.component';
 import { MisDatosComponent } from './componentes/mis-datos/mis-datos.component';
 import { AdministrarHorariosComponent } from './componentes/administrar-horarios/administrar-horarios.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -83,6 +86,7 @@ var firebaseConfig = {
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserModule,
+    MatNativeDateModule,
     FlexLayoutModule,
     MatMenuModule,
     MatIconModule,
@@ -103,11 +107,13 @@ var firebaseConfig = {
     MatTabsModule,
     MatSelectModule,
     MatPaginatorModule,
+    MatDatepickerModule,
     MatSortModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    NgxMaterialTimepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

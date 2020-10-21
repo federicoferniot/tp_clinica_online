@@ -20,22 +20,4 @@ export class PrincipalComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  navegar(url) {
-    switch (url) {
-      case 'admin':
-        this.router.navigate(['Admin']);
-        break;
-      case 'paciente':
-        this.router.navigate(['Paciente']);
-        break;
-      case 'profesional':
-        this.router.navigate(['Profesional']);
-        break;
-
-      default:
-        break;
-    }
-  }
-
 }

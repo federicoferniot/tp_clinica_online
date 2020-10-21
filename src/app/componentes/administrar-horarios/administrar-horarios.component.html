@@ -1,1 +1,39 @@
-<p>administrar-horarios works!</p>
+<app-menu></app-menu>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+        <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+            <mat-label>Días Laborales</mat-label>
+            <div fxLayout="row">
+                <button mat-mini-fab>
+                    L
+                </button>
+                <button mat-mini-fab>
+                    M
+                </button>
+                <button mat-mini-fab>
+                    X
+                </button>
+                <button mat-mini-fab>
+                    J
+                </button>
+                <button mat-mini-fab>
+                    V
+                </button>
+                <button mat-mini-fab>
+                    S
+                </button>
+            </div>
+            <div>
+                <input placeholder="Hora Desde" [ngxTimepicker]="desde" min="8:00 am" max="07:00 pm" readonly>
+                <ngx-material-timepicker [minutesGap]="30" #desde></ngx-material-timepicker>
+            </div>
+            <div>
+                <input placeholder="Hora Desde" [ngxTimepicker]="hasta" min="8:00 am" max="07:00 pm" readonly>
+                <ngx-material-timepicker [minutesGap]="30" #hasta></ngx-material-timepicker>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Guardar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

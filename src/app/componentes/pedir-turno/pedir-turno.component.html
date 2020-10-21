@@ -1,1 +1,31 @@
-<p>pedir-turno works!</p>
+<app-menu></app-menu>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="cargando || cargandoProfesionales"></mat-spinner>
+    <mat-card *ngIf="!cargando && !cargandoProfesionales">
+        <mat-card-content fxLayout="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Especialidad</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">
+                    {{especialidad}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Profesional</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let profesional of profesionales" [value]="profesional.uid">
+                    {{profesional.nombre}} {{profesional.apellido}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Elija una fecha</mat-label>
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              <button mat-raised-button>Buscar Turnos</button>
+        </mat-card-content>
+    </mat-card>
+</div>
