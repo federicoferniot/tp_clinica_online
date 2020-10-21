@@ -5,19 +5,10 @@ table {
     min-height: 40%;
 }
 
-.tabla {
-    box-shadow: 5px 0px rebeccapurple;
-}
-
-.paginas {
-    box-shadow: 5px 5px rebeccapurple;
-}
-
 .busqueda {
     display: flex;
     margin-top: 1%;
     background-color: white;
-    box-shadow: 5px 5px rebeccapurple;
 }
 
 table tr:nth-child(odd) {

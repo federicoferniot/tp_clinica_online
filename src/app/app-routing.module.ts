@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminProfesionalesComponent } from './componentes/admin-profesionales/admin-profesionales.component';
+import { AdministrarHorariosComponent } from './componentes/administrar-horarios/administrar-horarios.component';
 import { AltaAdminComponent } from './componentes/alta-admin/alta-admin.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { ManejarUsuarioComponent } from './componentes/manejar-usuario/manejar-usuario.component';
+import { MisDatosComponent } from './componentes/mis-datos/mis-datos.component';
 import { MisTurnosComponent } from './componentes/mis-turnos/mis-turnos.component';
 import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: 'AdministrarProfesionales', component: AdminProfesionalesComponent, data: { allowedRoles: ['admin'] }, canActivate: [AuthGuard] },
   { path: 'AltaAdministrador', component: AltaAdminComponent, data: { allowedRoles: ['admin'] }, canActivate: [AuthGuard] },
   { path: 'PedirTurno', component: PedirTurnoComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
-  { path: 'MisTurnos', component: MisTurnosComponent, data: {allowedRoles: ['paciente', 'profesional']}, canActivate: [AuthGuard]}
+  { path: 'MisTurnos', component: MisTurnosComponent, data: {allowedRoles: ['paciente', 'profesional']}, canActivate: [AuthGuard]},
+  { path: 'AdministrarHorarios', component: AdministrarHorariosComponent, data: {allowedRoles: ['profesional']}, canActivate: [AuthGuard]},
+  { path: 'MisDatos', component: MisDatosComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

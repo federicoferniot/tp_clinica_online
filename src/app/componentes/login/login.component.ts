@@ -43,39 +43,39 @@ export class LoginComponent implements OnInit {
     this.alertService.clear();
 
     if (this.form.invalid) {
-        return;
+      return;
     }
 
     this.loading = true;
-    this.authService.login(this.form.value.correo, this.form.value.clave).then( res => {
-      this.usuarioService.obtenerUsuario(this.authService.userLoggedIn.uid).subscribe( resultado => {
+    this.authService.login(this.form.value.correo, this.form.value.clave).then(res => {
+      this.usuarioService.obtenerUsuario(this.authService.userLoggedIn.uid).subscribe(resultado => {
         this.authService.setUserInfo(resultado.payload.data());
         switch (this.authService.getUserRole()) {
           case 'paciente':
-            if(!this.authService.userLoggedIn.emailVerified){
+            if (!this.authService.userLoggedIn.emailVerified) {
               this.alertService.error("No se ha verificado el correo. Por favor revise su casilla de correo")
               this.authService.logout();
               this.router.navigate(['/Login']);
               this.loading = false;
             }
-            else{
+            else {
               this.router.navigate(['/Principal']);
             }
             break;
           case 'profesional':
-            if(this.authService.infoUsuario().estado == 'pendiente'){
+            if (this.authService.infoUsuario().estado == 'pendiente') {
               this.alertService.error("Su usuario no ha sido autorizado por el administrador. Por favor espere a ser autorizado")
               this.authService.logout();
               this.router.navigate(['/Login']);
               this.loading = false;
             }
-            else if(this.authService.infoUsuario().estado == 'rechazado'){
+            else if (this.authService.infoUsuario().estado == 'rechazado') {
               this.alertService.error("Su usuario ha sido rechazado")
               this.authService.logout();
               this.router.navigate(['/Login']);
               this.loading = false;
             }
-            else{
+            else {
               this.router.navigate(['/Principal'])
             }
             break;
@@ -88,31 +88,51 @@ export class LoginComponent implements OnInit {
         }
       });
     })
-    .catch(error => {
-      console.log(error);
-      this.alertService.error(error);
-      this.loading = false;
-    });
+      .catch(error => {
+        console.log(error);
+        this.alertService.error(error);
+        this.loading = false;
+      });
   }
 
-  precargarUsuario(){
-    this.form.setValue({
-      correo: "feder.fer.93@gmail.com",
-      clave: "fedezxr37"
-    });
+  precargarUsuario(usuario) {
+    switch (usuario) {
+      case 'paciente':
+        this.form.setValue({
+          correo: "feder.fer.93@gmail.com",
+          clave: "fedezxr37"
+        });
+        break;
+      case 'admin':
+        this.form.setValue({
+          correo: "admin@mail.com",
+          clave: "123456"
+        });
+        break;
+      case 'profesional':
+        this.form.setValue({
+          correo: "profesional1@mail.com",
+          clave: "123456"
+        });
+        break;
+
+      default:
+        break;
+    }
+
   }
 
   openDialog() {
     const dialogRef = this.dialog.open(RecuperarComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.authService.sendPasswordResetEmail(result).then( res =>{
+      if (result) {
+        this.authService.sendPasswordResetEmail(result).then(res => {
           this.alertService.success("Se envió el mail")
         })
-        .catch( error =>{
-          this.alertService.error(error.message);
-        });
+          .catch(error => {
+            this.alertService.error(error.message);
+          });
       }
     });
   }

@@ -45,6 +45,8 @@ import { ManejarUsuarioComponent } from './componentes/manejar-usuario/manejar-u
 import { AdminProfesionalesComponent } from './componentes/admin-profesionales/admin-profesionales.component';
 import { VerEspecialidadesComponent } from './componentes/ver-especialidades/ver-especialidades.component';
 import { AltaAdminComponent } from './componentes/alta-admin/alta-admin.component';
+import { MisDatosComponent } from './componentes/mis-datos/mis-datos.component';
+import { AdministrarHorariosComponent } from './componentes/administrar-horarios/administrar-horarios.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -72,7 +74,9 @@ var firebaseConfig = {
     ManejarUsuarioComponent,
     AdminProfesionalesComponent,
     VerEspecialidadesComponent,
-    AltaAdminComponent
+    AltaAdminComponent,
+    MisDatosComponent,
+    AdministrarHorariosComponent
   ],
   imports: [
     FormsModule,

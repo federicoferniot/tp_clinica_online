@@ -1,0 +1,13 @@
+<app-menu></app-menu>
+<div fxLayout="column" fxLayoutAlign="center center">
+    <mat-card>
+        <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+            <span>{{usuario.nombre}} {{usuario.apellido}}</span>
+            <span>{{usuario.correo}}</span>
+            <div fxLayout="row">
+                <img [src]="usuario.imagen1">
+                <img [src]="usuario.imagen2">
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

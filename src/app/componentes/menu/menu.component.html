@@ -15,16 +15,22 @@
                     <mat-icon>keyboard_backspace</mat-icon>
                 </button>
                 <button *ngIf="role == 'admin'" mat-list-item routerLink="/AdministrarProfesionales">
-                    <span>Administrar Profesionales</span>
+                    <span>Autorizar Profesionales</span>
                 </button>
                 <button *ngIf="role == 'admin'" mat-list-item routerLink="/AltaAdministrador">
-                    <span>Alta Administrador</span>
+                    <span>Añadir Administrador</span>
                 </button>
-                <button mat-list-item routerLink="/Paciente">
-                    <span>Paciente</span>
+                <button *ngIf="role == 'paciente' || role == 'profesional'" mat-list-item routerLink="/MisTurnos">
+                    <span>Mis Turnos</span>
                 </button>
-                <button mat-list-item routerLink="/Profesional">
-                    <span>Profesional</span>
+                <button *ngIf="role == 'paciente'" mat-list-item routerLink="/PedirTurno">
+                    <span>Pedir Turno</span>
+                </button>
+                <button *ngIf="role == 'paciente'" mat-list-item routerLink="/MisDatos">
+                    <span>Mis Datos</span>
+                </button>
+                <button *ngIf="role == 'profesional'" mat-list-item routerLink="/AdministrarHorarios">
+                    <span>Administrar Horarios</span>
                 </button>
                 <button mat-list-item (click)="salir()">
                     <span>Salir</span>

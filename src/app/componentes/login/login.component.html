@@ -27,7 +27,9 @@
             Ingresar
           </button>
           <button mat-raised-button color="accent" type="button" routerLink="/Registro" >Registrarse</button>
-          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario()">Usuario de Prueba</button>
+          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('paciente')">Usuario paciente</button>
+          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('profesional')">Usuario profesional</button>
+          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('admin')">Usuario admin</button>
         </mat-card-actions>
       </form>
       <mat-card-footer>
