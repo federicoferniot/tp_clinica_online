@@ -5,7 +5,7 @@
 
 * [Acerca del proyecto](#acerca-del-proyecto)
 * [Acerca de mi](#acerca-de-mi)
-* [Cómo funciona](#como-funciona)
+* [Cómo funciona](#cómo-funciona)
 
 ## Acerca del proyecto
 
