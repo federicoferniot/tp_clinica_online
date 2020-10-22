@@ -1,12 +1,11 @@
 # TpClinicaOnline
 
-<!-- TABLE OF CONTENTS -->
-## Table of Contents
+<!-- Contenido -->
+## Contenido
 
 * [Acerca del proyecto](#acerca-del-proyecto)
 * [Acerca de mi](#acerca-de-mi)
 * [Cómo funciona](#como-funciona)
-* [Acknowledgements](#acknowledgements)
 
 ## Acerca del proyecto
 
