@@ -152,7 +152,7 @@ export class RegistroComponent implements OnInit {
     this.loading = true;
     this.authService.register(this.formProfesional.value.correo, this.formProfesional.value.clave)
       .then((data) => {
-        let profesional = new Profesional(data.user.uid, this.formProfesional.value.nombre, this.formProfesional.value.apellido, this.formProfesional.value.correo, this.formProfesional.value.especialidades, 'pendiente')
+        let profesional = new Profesional(data.user.uid, this.formProfesional.value.nombre, this.formProfesional.value.apellido, this.formProfesional.value.correo, this.formProfesional.value.especialidades, 'pendiente', null)
         this.usuarioService.nuevoProfesional(profesional);
         this.alertService.success('Se ha registrado correctamente', { keepAfterRouteChange: true });
         this.router.navigate(['/Login']);

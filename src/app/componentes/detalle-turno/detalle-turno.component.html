@@ -1,0 +1,18 @@
+<div *ngIf="turno" fxLayout="column" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="cargando"></mat-spinner>
+    <mat-card *ngIf="!cargando">
+        <mat-card-content fxLayout="column">
+            <h1>Información de su turno</h1>
+            <mat-list>
+                <mat-list-item>Hora: {{turno.hora}}</mat-list-item>
+                <mat-list-item>Especialidad: {{turno.especialidad}}</mat-list-item>
+                <mat-list-item>Profesional: {{profesionales[turno.profesional].nombre}} {{profesionales[turno.profesional].apellido}}</mat-list-item>
+                <mat-list-item>Día: {{turno.dia.toLocaleDateString()}}</mat-list-item>
+                <mat-list-item>Duración: {{turno.duracion}} minutos</mat-list-item>
+            </mat-list>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="center center">
+            <button mat-raised-button color="primary" (click)="guardar()">Solicitar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

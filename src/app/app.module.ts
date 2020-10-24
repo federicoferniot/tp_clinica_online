@@ -29,6 +29,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSortModule } from '@angular/material/sort';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {TableModule} from 'primeng/table';
 
 import { AngularFireModule } from "@angular/fire";
 import { AppComponent } from './app.component';
@@ -49,7 +50,8 @@ import { VerEspecialidadesComponent } from './componentes/ver-especialidades/ver
 import { AltaAdminComponent } from './componentes/alta-admin/alta-admin.component';
 import { MisDatosComponent } from './componentes/mis-datos/mis-datos.component';
 import { AdministrarHorariosComponent } from './componentes/administrar-horarios/administrar-horarios.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { DetalleTurnoComponent } from './componentes/detalle-turno/detalle-turno.component';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -79,7 +81,8 @@ var firebaseConfig = {
     VerEspecialidadesComponent,
     AltaAdminComponent,
     MisDatosComponent,
-    AdministrarHorariosComponent
+    AdministrarHorariosComponent,
+    DetalleTurnoComponent
   ],
   imports: [
     FormsModule,
@@ -109,13 +112,14 @@ var firebaseConfig = {
     MatPaginatorModule,
     MatDatepickerModule,
     MatSortModule,
+    TableModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
-    NgxMaterialTimepickerModule
+    NgxMaterialTimepickerModule.setLocale('es')
   ],
-  providers: [],
+  providers: [ {provide: MAT_DATE_LOCALE, useValue: 'es-AR'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

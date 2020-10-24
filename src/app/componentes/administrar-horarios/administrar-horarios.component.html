@@ -1,39 +1,40 @@
 <app-menu></app-menu>
 <div fxLayout="column" fxLayoutAlign="center center">
-    <mat-card>
+    <mat-spinner *ngIf="cargando"></mat-spinner>
+    <mat-card *ngIf="!cargando">
         <mat-card-content fxLayout="column" fxLayoutAlign="center center">
             <mat-label>Días Laborales</mat-label>
             <div fxLayout="row">
-                <button mat-mini-fab>
-                    L
-                </button>
-                <button mat-mini-fab>
-                    M
-                </button>
-                <button mat-mini-fab>
-                    X
-                </button>
-                <button mat-mini-fab>
-                    J
-                </button>
-                <button mat-mini-fab>
-                    V
-                </button>
-                <button mat-mini-fab>
-                    S
+                <button (click)="seleccionar(dia)" [ngClass]="{'seleccionado': !dia.seleccionado}" mat-mini-fab *ngFor="let dia of dias">
+                    {{dia.id}}
                 </button>
             </div>
-            <div>
-                <input placeholder="Hora Desde" [ngxTimepicker]="desde" min="8:00 am" max="07:00 pm" readonly>
-                <ngx-material-timepicker [minutesGap]="30" #desde></ngx-material-timepicker>
+            <div *ngIf="isDiaSemanaSeleccionado()">
+                <mat-label>Horarios Semanales</mat-label>
+                <div>
+                    <input [(ngModel)]="horadesde" [format]=24 placeholder="Hora Desde" [ngxTimepicker]="desde" min="8:00" max="19:00" readonly>
+                    <ngx-material-timepicker [minutesGap]="30" #desde></ngx-material-timepicker>
+                </div>
+                <div>
+                    <input [(ngModel)]="horahasta" [format]=24 placeholder="Hora Hasta" [ngxTimepicker]="hasta" min="8:00" max="19:00" readonly>
+                    <ngx-material-timepicker  [minutesGap]="30" #hasta></ngx-material-timepicker>
+                </div>
             </div>
-            <div>
-                <input placeholder="Hora Desde" [ngxTimepicker]="hasta" min="8:00 am" max="07:00 pm" readonly>
-                <ngx-material-timepicker [minutesGap]="30" #hasta></ngx-material-timepicker>
+            <div *ngIf="sabado">
+                <mat-label>Horario Sábados</mat-label>
+                <div>
+                    <input [(ngModel)]="horadesdeS" placeholder="Hora Desde" [format]=24 [ngxTimepicker]="desdeS" min="8:00" max="14:00" readonly>
+                    <ngx-material-timepicker [minutesGap]="30" #desdeS></ngx-material-timepicker>
+                </div>
+                <div>
+                    <input [(ngModel)]="horahastaS" placeholder="Hora Hasta" [format]=24 [ngxTimepicker]="hastaS" min="8:00 am" max="02:00 pm" readonly>
+                    <ngx-material-timepicker [minutesGap]="30" #hastaS></ngx-material-timepicker>
+                </div>
             </div>
+
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button color="primary">Guardar</button>
+            <button [disabled]="!isCompleted()" mat-raised-button color="primary" (click)="guardar()">Guardar</button>
         </mat-card-actions>
     </mat-card>
 </div>

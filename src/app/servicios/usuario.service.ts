@@ -63,4 +63,10 @@ export class UsuarioService {
       estado: "rechazado"
     })
   }
+
+  guardarHorarios(uid, horarios){
+    return this.db.collection('usuarios').doc(uid).set({
+      horarios: horarios
+    }, {merge: true});
+  }
 }

@@ -1,31 +1,48 @@
 <app-menu></app-menu>
 <div fxLayout="column" fxLayoutAlign="center center">
-    <mat-spinner *ngIf="cargando || cargandoProfesionales"></mat-spinner>
-    <mat-card *ngIf="!cargando && !cargandoProfesionales">
-        <mat-card-content fxLayout="column">
-            <mat-form-field appearance="fill">
-                <mat-label>Especialidad</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">
-                    {{especialidad}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field appearance="fill">
-                <mat-label>Profesional</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let profesional of profesionales" [value]="profesional.uid">
-                    {{profesional.nombre}} {{profesional.apellido}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Elija una fecha</mat-label>
-                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-              <button mat-raised-button>Buscar Turnos</button>
-        </mat-card-content>
-    </mat-card>
+  <mat-spinner *ngIf="cargando || cargandoProfesionales || cargandoTurnos"></mat-spinner>
+  <mat-card *ngIf="!cargando && !cargandoProfesionales && !cargandoTurnos && !siguiente">
+    <mat-card-content fxLayout="column">
+      <mat-form-field appearance="fill">
+        <mat-label>Especialidad</mat-label>
+        <mat-select (selectionChange)="filtrarProfesional()" [(ngModel)]="especialidadSeleccionada">
+          <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">
+            {{especialidad}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Profesional</mat-label>
+        <mat-select [(ngModel)]="profesionalSeleccionado">
+          <mat-option *ngFor="let profesional of profesionales" [value]="profesional">
+            {{profesional.nombre}} {{profesional.apellido}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Elija una fecha</mat-label>
+        <input [(ngModel)]="date" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" disabled>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+      <button mat-button color="primary" [disabled]="!puedeBuscar()" (click)="buscar()">Buscar Turnos</button>
+      <mat-form-field appearance="fill">
+        <mat-label>Turnos disponibles</mat-label>
+        <mat-select [(ngModel)]="turnoSeleccionado">
+          <mat-optgroup *ngFor="let profesional of turnos"
+            [label]="profesional.profesional.apellido + ' ' + profesional.profesional.nombre">
+            <mat-option [value]="turno" *ngFor="let turno of profesional.turnos">
+              {{turno.hora}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="turnoSeleccionado == null" (click)="siguientePaso()" mat-raised-button
+        color="primary">Siguiente</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <app-detalle-turno [hidden]="!siguiente" (guardarClick)="guardar()" [turno]="turnoSeleccionado"></app-detalle-turno>
 </div>

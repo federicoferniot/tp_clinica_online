@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -31,7 +31,7 @@ export class AdminProfesionalesComponent implements OnInit {
       this._profesionales = [];
       response.forEach(el => {
         if (el.data().role == 'profesional') {
-          this._profesionales.push(new Profesional(el.id, el.data().nombre, el.data().apellido, el.data().correo, el.data().especialidades, el.data().estado));
+          this._profesionales.push(new Profesional(el.id, el.data().nombre, el.data().apellido, el.data().correo, el.data().especialidades, el.data().estado, el.data().horarios));
         }
       });
       this.profesionales = new MatTableDataSource(this._profesionales);
