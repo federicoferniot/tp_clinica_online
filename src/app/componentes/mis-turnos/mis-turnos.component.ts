@@ -13,6 +13,8 @@ import { ReviewService } from 'src/app/servicios/review.service';
 import { VerReviewComponent } from '../ver-review/ver-review.component'
 import { VerEncuestaComponent } from '../ver-encuesta/ver-encuesta.component';
 import { EncuestaService } from 'src/app/servicios/encuesta.service';
+import { NotificacionService } from '../../servicios/notificacion.service'
+import { Notificacion } from 'src/app/clases/notificacion';
 
 @Component({
   selector: 'app-mis-turnos',
@@ -40,7 +42,8 @@ export class MisTurnosComponent implements OnInit {
     private spinnerService: SpinnerService,
     private dialog: MatDialog,
     private reviewService: ReviewService,
-    private encuestaService: EncuestaService) {
+    private encuestaService: EncuestaService,
+    private notificacionService: NotificacionService) {
     this.role = this.authService.getUserRole();
   }
 
@@ -83,35 +86,43 @@ export class MisTurnosComponent implements OnInit {
     this.cargandoTurnos = true;
     this.spinnerService.show();
     this.turnoService.aceptarTurno(turno.id).then(response=>{
-      this._turnos.forEach(el=>{
-        if(el.id == turno.id){
-          el.estado = 'aceptado';
-        };
+      let notificacion = new Notificacion(null, null, null, false);
+      notificacion.setMensajeAceptado(turno);
+      this.notificacionService.enviarNotificacion(turno.paciente, notificacion).then(()=>{
+        this._turnos.forEach(el=>{
+          if(el.id == turno.id){
+            el.estado = 'aceptado';
+          };
+        });
+        this.spinnerService.hide();
+        this.cargandoTurnos = false;
+        this.turnos = new MatTableDataSource(this._turnos);
+        this.snackBar.open("Se ha aceptado el turno", "X", {
+          duration: 3000,
+          panelClass: 'notif-success'
+        });
       });
-      this.spinnerService.hide();
-      this.cargandoTurnos = false;
-      this.turnos = new MatTableDataSource(this._turnos);
-      this.snackBar.open("Se ha aceptado el turno", "X", {
-        duration: 3000,
-        panelClass: 'notif-success'
-      });
-    })
+    });
   }
 
   cancelar(turno){
     this.spinnerService.show();
     this.turnoService.cancelarTurno(turno.id).then(response=>{
-      this._turnos.forEach(el=>{
-        if(el.id == turno.id){
-          el.estado = 'cancelado';
-        };
-      });
-      this.cargandoTurnos = false;
-      this.spinnerService.hide();
-      this.turnos = new MatTableDataSource(this._turnos);
-      this.snackBar.open("Se ha cancelado el turno", "X", {
-        duration: 3000,
-        panelClass: 'notif-success'
+      let notificacion = new Notificacion(null, null, null, false);
+      notificacion.setMensajeCancelado(turno);
+      this.notificacionService.enviarNotificacion(turno.paciente, notificacion).then(()=>{
+        this._turnos.forEach(el=>{
+          if(el.id == turno.id){
+            el.estado = 'cancelado';
+          };
+        });
+        this.cargandoTurnos = false;
+        this.spinnerService.hide();
+        this.turnos = new MatTableDataSource(this._turnos);
+        this.snackBar.open("Se ha cancelado el turno", "X", {
+          duration: 3000,
+          panelClass: 'notif-success'
+        });
       });
     })
   }

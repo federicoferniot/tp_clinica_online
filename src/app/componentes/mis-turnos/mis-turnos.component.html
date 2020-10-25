@@ -46,6 +46,9 @@
                             <button matTooltip="Ver Reseña" mat-button (click)="ver(element)">
                                 <mat-icon>description</mat-icon>
                             </button>
+                            <button *ngIf="element.tieneEncuesta" matTooltip="Ver Encuesta" mat-button (click)="verEncuesta(element)">
+                                <mat-icon>mode_comment</mat-icon>
+                            </button>
                         </div>
                         <div *ngSwitchCase="'cancelado'">
                             No hay acciones disponibles
@@ -101,10 +104,10 @@
                                 <mat-icon>description</mat-icon>
                             </button>
                             <button *ngIf="!element.tieneEncuesta" matTooltip="Cargar Encuesta" mat-button (click)="completarEncuesta(element)">
-                                <mat-icon>description</mat-icon>
+                                <mat-icon>insert_comment</mat-icon>
                             </button>
                             <button *ngIf="element.tieneEncuesta" matTooltip="Ver Encuesta" mat-button (click)="verEncuesta(element)">
-                                <mat-icon>description</mat-icon>
+                                <mat-icon>mode_comment</mat-icon>
                             </button>
                         </div>
                         <div *ngSwitchCase="'cancelado'">

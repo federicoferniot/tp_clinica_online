@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 
@@ -13,6 +13,9 @@ export class MenuComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router) { }
+
+  @Input() notificacion;
+  @Input() cantidad;
 
   ngOnInit(): void {
     this.role = this.authService.getUserRole();

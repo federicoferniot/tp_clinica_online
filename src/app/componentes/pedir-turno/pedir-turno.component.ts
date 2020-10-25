@@ -8,6 +8,7 @@ import { Turno } from '../../clases/turno'
 import { AuthService } from 'src/app/servicios/auth.service';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/servicios/alert.service';
+import { SpinnerService } from 'src/app/servicios/spinner.service';
 
 @Component({
   selector: 'app-pedir-turno',
@@ -41,7 +42,8 @@ export class PedirTurnoComponent implements OnInit {
     private authService: AuthService,
     private turnoService: TurnoService,
     private router: Router,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     this.cargando = true;
@@ -202,13 +204,16 @@ export class PedirTurnoComponent implements OnInit {
   }
 
   guardar(){
-    this.cargando = true;
+    this.spinnerService.show();
     this.turnoService.nuevoTurno(this.turnoSeleccionado).then((res)=>{
       this.cargando = false;
       this.alertService.success("Su turno ha sido solicitado", { keepAfterRouteChange: true });
+      this.spinnerService.hide();
       this.router.navigate(['/Principal']);
     },
     (error)=>{
+      this.spinnerService.hide();
+      this.cargando = false;
       this.alertService.error("Ha ocurrido un error", { keepAfterRouteChange: true });
     })
   }

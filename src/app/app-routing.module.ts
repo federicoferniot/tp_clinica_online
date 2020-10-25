@@ -7,6 +7,7 @@ import { LoginComponent } from './componentes/login/login.component';
 import { ManejarUsuarioComponent } from './componentes/manejar-usuario/manejar-usuario.component';
 import { MisDatosComponent } from './componentes/mis-datos/mis-datos.component';
 import { MisTurnosComponent } from './componentes/mis-turnos/mis-turnos.component';
+import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 import { PacienteComponent } from './componentes/paciente/paciente.component';
 import { PedirTurnoComponent } from './componentes/pedir-turno/pedir-turno.component';
 import { PrincipalComponent } from './componentes/principal/principal.component';
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'PedirTurno', component: PedirTurnoComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
   { path: 'MisTurnos', component: MisTurnosComponent, data: {allowedRoles: ['paciente', 'profesional']}, canActivate: [AuthGuard]},
   { path: 'AdministrarHorarios', component: AdministrarHorariosComponent, data: {allowedRoles: ['profesional']}, canActivate: [AuthGuard]},
-  { path: 'MisDatos', component: MisDatosComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]}
+  { path: 'MisDatos', component: MisDatosComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
+  { path: 'Notificaciones', component: NotificacionesComponent,  data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

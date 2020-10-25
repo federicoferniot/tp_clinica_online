@@ -29,8 +29,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio'
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
-import {TableModule} from 'primeng/table';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+import { TableModule } from 'primeng/table';
+import { MatBadgeModule } from '@angular/material/badge'
 
 import { AngularFireModule } from "@angular/fire";
 import { AppComponent } from './app.component';
@@ -58,6 +59,10 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
 import { VerReviewComponent } from './componentes/ver-review/ver-review.component';
 import { CargarEncuestaComponent } from './componentes/cargar-encuesta/cargar-encuesta.component';
 import { VerEncuestaComponent } from './componentes/ver-encuesta/ver-encuesta.component';
+import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
+import { VerNotificacionComponent } from './componentes/ver-notificacion/ver-notificacion.component';
+import { RecaptchaModule, RecaptchaV3Module, RECAPTCHA_NONCE, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
+import { HttpClientModule } from '@angular/common/http';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -93,9 +98,12 @@ var firebaseConfig = {
     SpinnerComponent,
     VerReviewComponent,
     CargarEncuestaComponent,
-    VerEncuestaComponent
+    VerEncuestaComponent,
+    NotificacionesComponent,
+    VerNotificacionComponent
   ],
   imports: [
+    RecaptchaModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -125,13 +133,15 @@ var firebaseConfig = {
     MatDatepickerModule,
     MatSortModule,
     TableModule,
+    HttpClientModule,
+    MatBadgeModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
     NgxMaterialTimepickerModule.setLocale('es')
   ],
-  providers: [ {provide: MAT_DATE_LOCALE, useValue: 'es-AR'}],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-AR' }, {provide: RECAPTCHA_NONCE, useValue: '6LdhV9sZAAAAAKBXfwzB-7JWhUWuDSGVist-qmi0'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

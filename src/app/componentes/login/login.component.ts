@@ -7,6 +7,8 @@ import { AlertService } from '../../servicios/alert.service';
 import { MatDialog } from '@angular/material/dialog';
 import { RecuperarComponent } from '../recuperar/recuperar.component';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,7 @@ export class LoginComponent implements OnInit {
   public form: FormGroup;
   loading = false;
   submitted = false;
+  public recaptcha;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +29,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     public dialog: MatDialog,
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private http: HttpClient) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -45,7 +49,6 @@ export class LoginComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-
     this.loading = true;
     this.authService.login(this.form.value.correo, this.form.value.clave).then(res => {
       this.usuarioService.obtenerUsuario(this.authService.userLoggedIn.uid).subscribe(resultado => {
@@ -120,6 +123,14 @@ export class LoginComponent implements OnInit {
         break;
     }
 
+  }
+
+  captcha(event){
+    this.recaptcha = !(event === null)
+  }
+
+  expire(event){
+    this.recaptcha = false;
   }
 
   openDialog() {

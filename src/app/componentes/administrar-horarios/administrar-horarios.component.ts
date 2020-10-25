@@ -92,4 +92,12 @@ export class AdministrarHorariosComponent implements OnInit {
     return retorno;
   }
 
+  isCompletedConfig(){
+
+  }
+
+  guardarConfig(){
+    
+  }
+
 }

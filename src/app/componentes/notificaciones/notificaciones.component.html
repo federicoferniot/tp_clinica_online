@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<div class="container" fxLayout="column" fxLayoutAlign="none center">
+    <div class="container" [hidden]="cargando">
+        <div clasS="sin" fxLayoutAlign="center center" *ngIf="!cargando && cantidad() == 0">
+            <p>Usted no tiene notificaciones</p>
+        </div>
+        <table [hidden]="cargando || cantidad()==0" mat-table [dataSource]="notificaciones" matSort class="mat-elevation-z8 tabla">
+            <ng-container matColumnDef="asunto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Asunto</th>
+                <td [ngClass]="{'noleido': !element.leido, 'leido': element.leido}" mat-cell *matCellDef="let element">{{element.asunto}}</td>
+                <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                <td [ngClass]="{'noleido': !element.leido, 'leido': element.leido}" mat-cell *matCellDef="let element">
+                    <button matTooltip="Ver" mat-button (click)="ver(element)">
+                        <mat-icon>remove_red_eye</mat-icon>
+                    </button>
+                    <button matTooltip="Eliminar" mat-button (click)="eliminar(element)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+                <td mat-footer-cell *matFooterCellDef></td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+        </table>
+        <mat-paginator [hidden]="cargando || cantidad()==0" class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>

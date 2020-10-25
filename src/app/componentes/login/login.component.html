@@ -1,39 +1,44 @@
 <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="login-main mat-elevation-z8">
-      <mat-card-header>
-        <mat-card-title>Ingresar</mat-card-title>
-      </mat-card-header>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-card-content fxLayout="column">
-            <mat-form-field appearance="outline">
-                <mat-label>Correo</mat-label>
-                <input formControlName="correo" matInput [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
-                <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
-                  <div *ngIf="f.correo.errors.required">Ingrese un correo</div>
-                  <div *ngIf="f.correo.errors.email">Formato incorrecto</div>
-                </div>
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-                <mat-label>Clave</mat-label>
-                <input formControlName="clave" matInput type="password" [ngClass]="{ 'is-invalid': submitted && f.clave.errors }">
-                <div *ngIf="submitted && f.clave.errors" class="invalid-feedback">
-                  <div *ngIf="f.clave.errors.required">Ingrese una clave</div>
-                </div>
-            </mat-form-field>
-        </mat-card-content>
-        <mat-card-actions>
-          <button [disabled]="loading" type="submit" mat-raised-button color="primary">
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-            Ingresar
-          </button>
-          <button mat-raised-button color="accent" type="button" routerLink="/Registro" >Registrarse</button>
-          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('paciente')">Usuario paciente</button>
-          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('profesional')">Usuario profesional</button>
-          <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('admin')">Usuario admin</button>
-        </mat-card-actions>
-      </form>
-      <mat-card-footer>
-        <span class="btn-cancelar">Te olvidaste <a [routerLink]="" (click)="openDialog()">la clave?</a></span>
-      </mat-card-footer>
-    </mat-card>
-  </div>
+  <mat-card class="login-main mat-elevation-z8">
+    <mat-card-header>
+      <mat-card-title>Ingresar</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-card-content fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Correo</mat-label>
+          <input formControlName="correo" matInput [ngClass]="{ 'is-invalid': submitted && f.correo.errors }">
+          <div *ngIf="submitted && f.correo.errors" class="invalid-feedback">
+            <div *ngIf="f.correo.errors.required">Ingrese un correo</div>
+            <div *ngIf="f.correo.errors.email">Formato incorrecto</div>
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Clave</mat-label>
+          <input formControlName="clave" matInput type="password"
+            [ngClass]="{ 'is-invalid': submitted && f.clave.errors }">
+          <div *ngIf="submitted && f.clave.errors" class="invalid-feedback">
+            <div *ngIf="f.clave.errors.required">Ingrese una clave</div>
+          </div>
+        </mat-form-field>
+        <re-captcha (expire)="expire($event)" (resolved)="captcha($event)" required siteKey="6LdhV9sZAAAAAKBXfwzB-7JWhUWuDSGVist-qmi0"></re-captcha>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [disabled]="loading || !recaptcha" type="submit" mat-raised-button color="primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Ingresar
+        </button>
+        <button mat-raised-button color="accent" type="button" routerLink="/Registro">Registrarse</button>
+        <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('paciente')">Usuario
+          paciente</button>
+        <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('profesional')">Usuario
+          profesional</button>
+        <button mat-button type="button" style="color: cadetblue;" (click)="precargarUsuario('admin')">Usuario
+          admin</button>
+      </mat-card-actions>
+    </form>
+    <mat-card-footer>
+      <span class="btn-cancelar">Te olvidaste <a [routerLink]="" (click)="openDialog()">la clave?</a></span>
+    </mat-card-footer>
+  </mat-card>
+</div>

@@ -1,0 +1,38 @@
+table {
+    width: 100%;
+    margin-top: 5%;
+    min-width: 50%;
+    min-height: 40%;
+}
+
+.busqueda {
+    display: flex;
+    margin-top: 1%;
+    background-color: white;
+}
+
+table tr:nth-child(odd) {
+    background-color: whitesmoke;
+}
+table tr:nth-child(even) {
+    background-color: white;
+}
+
+.estado {
+    text-transform: capitalize;
+}
+
+.noleido{
+    font-size: larger;
+    background-color: white;
+}
+
+.leido{
+    background-color: lightgrey;
+}
+
+.sin{
+    margin-top: 5%;
+    font-size: larger;
+    font: bold;
+}

@@ -1,4 +1,5 @@
-<app-menu></app-menu>
+<app-menu *ngIf="role=='paciente'" [notificacion]=true [cantidad]="cantNoLeidas"></app-menu>
+<app-menu *ngIf="role != 'paciente'"></app-menu>
 <div fxLayout="column" fxLayoutAlign="center center">
     <h1>Bienvenido {{nombre}} {{apellido}}!</h1>
     <h3>Los horarios de atención son Lunes a Viernes de 8:00 a 19:00 y Sábados de 8:00 a 14:00</h3>

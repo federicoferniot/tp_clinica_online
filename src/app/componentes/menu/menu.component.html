@@ -5,6 +5,11 @@
     <button mat-icon-button routerLink="/Principal">
         <mat-icon>home</mat-icon>
     </button>
+    <span class="spacer"></span>
+    <button *ngIf="notificacion" mat-icon-button>
+        <mat-icon *ngIf="cantidad > 0" matBadgeColor="warn" [matBadge]="cantidad" routerLink="/Notificaciones">notifications</mat-icon>
+        <mat-icon *ngIf="cantidad == 0" routerLink="/Notificaciones">notifications</mat-icon>
+    </button>
 </mat-toolbar>
 <mat-drawer-container>
     <mat-sidenav #sidenav class="side-nav-left" position="start" role="directory" [opened]="opened">
