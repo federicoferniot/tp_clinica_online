@@ -1,7 +1,6 @@
 <app-menu></app-menu>
 <div class="container" fxLayout="column" fxLayoutAlign="none center">
-    <mat-spinner *ngIf="cargandoTurnos || cargandoUsuarios"></mat-spinner>
-    <div class="container" [hidden]="cargandoTurnos || cargandoUsuarios || role != 'profesional'">
+    <div class="container" [hidden]="cargandoTurnos || cargandoUsuarios || role != 'profesional' || cargarReview || cargarEncuesta">
         <table [hidden]="cargandoTurnos || cargandoUsuarios" mat-table [dataSource]="turnos" matSort class="mat-elevation-z8 tabla">
             <ng-container matColumnDef="fecha">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
@@ -61,7 +60,7 @@
         </table>
         <mat-paginator class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
-    <div class="container" [hidden]="role != 'paciente' || cargandoTurnos || cargandoUsuarios">
+    <div class="container" [hidden]="role != 'paciente' || cargandoTurnos || cargandoUsuarios || cargarReview || cargarEncuesta">
         <table [hidden]="cargandoTurnos || cargandoUsuarios" mat-table [dataSource]="turnos" matSort class="mat-elevation-z8 tabla">
             <ng-container matColumnDef="fecha">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Dia</th>
@@ -101,6 +100,12 @@
                             <button matTooltip="Ver Reseña" mat-button (click)="ver(element)">
                                 <mat-icon>description</mat-icon>
                             </button>
+                            <button *ngIf="!element.tieneEncuesta" matTooltip="Cargar Encuesta" mat-button (click)="completarEncuesta(element)">
+                                <mat-icon>description</mat-icon>
+                            </button>
+                            <button *ngIf="element.tieneEncuesta" matTooltip="Ver Encuesta" mat-button (click)="verEncuesta(element)">
+                                <mat-icon>description</mat-icon>
+                            </button>
                         </div>
                         <div *ngSwitchCase="'cancelado'">
                             No hay acciones disponibles
@@ -115,4 +120,6 @@
         </table>
         <mat-paginator class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
+    <app-cargar-review *ngIf="cargarReview" [turno]="turnoReview" (guardarReview)="reviewGuardada()"></app-cargar-review>
+    <app-cargar-encuesta *ngIf="cargarEncuesta" [turno]="turnoEncuesta" (guardarEncuesta)="encuestaGuardada()"></app-cargar-encuesta>
 </div>

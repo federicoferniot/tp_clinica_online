@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Completar Encuesta</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="form">
+            <mat-card-content fxLayout="column">
+                <mat-label>¿Cómo calificaría la consulta en general?</mat-label>
+                <mat-form-field appearance="outline">
+                    <mat-select formControlName="calificacion" required>
+                        <mat-option value="Muy Buena">
+                            Muy Buena
+                        </mat-option>
+                        <mat-option value="Buena">
+                            Buena
+                        </mat-option>
+                        <mat-option value="Regular">
+                            Regular
+                        </mat-option>
+                        <mat-option value="Mala">
+                            Mala
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxLayout="column">
+                    <mat-label>¿Se encontraban limpias las instalaciones?</mat-label>
+                    <mat-radio-group formControlName="limpieza" fxLayout="column">
+                        <mat-radio-button value="Si">Si</mat-radio-button>
+                        <mat-radio-button value="No">No</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Deje un comentario al médico</mat-label>
+                    <textarea matInput formControlName="atencion"
+                        placeholder="Ingrese su opinión sobre la atención del médico"></textarea>
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="center center">
+                <button (click)="guardar()" [disabled]="loading" type="submit" mat-raised-button color="primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Guardar Encuesta
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>

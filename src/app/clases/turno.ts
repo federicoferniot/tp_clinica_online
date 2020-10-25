@@ -7,8 +7,9 @@ export class Turno {
     public duracion;
     public estado;
     public especialidad;
+    public tieneEncuesta;
 
-    constructor(id, hora, profesional, paciente, dia, especialidad, duracion, estado){
+    constructor(id, hora, profesional, paciente, dia, especialidad, duracion, estado, tieneEncuesta){
         this.id = id;
         this.hora = hora;
         this.profesional = profesional;
@@ -17,5 +18,6 @@ export class Turno {
         this.duracion = duracion;
         this.especialidad = especialidad;
         this.estado = estado;
+        this.tieneEncuesta = tieneEncuesta;
     }
 }

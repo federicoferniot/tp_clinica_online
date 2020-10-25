@@ -21,8 +21,23 @@ export class TurnoService {
     });
   }
 
+
+
   obtenerTurnos(){
     return this.db.collection('turnos').get();
+  }
+
+  cargarReview(id){
+    return this.db.collection('turnos').doc(id).update({
+      estado: 'finalizado',
+      review: true
+    });
+  }
+  
+  cargarEncuesta(id){
+    return this.db.collection('turnos').doc(id).update({
+      tieneEncuesta: true
+    });
   }
 
   aceptarTurno(id){
