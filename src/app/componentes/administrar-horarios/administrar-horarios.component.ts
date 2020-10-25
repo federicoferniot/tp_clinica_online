@@ -93,11 +93,11 @@ export class AdministrarHorariosComponent implements OnInit {
   }
 
   isCompletedConfig(){
-
+    return false;
   }
 
   guardarConfig(){
-    
+
   }
 
 }
