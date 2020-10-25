@@ -165,7 +165,6 @@ export class MisTurnosComponent implements OnInit {
       })
 
       dialogRef.afterClosed().subscribe( result => {
-        console.log(result);
       })
     })
   }
@@ -180,7 +179,6 @@ export class MisTurnosComponent implements OnInit {
       })
 
       dialogRef.afterClosed().subscribe( result => {
-        console.log(result);
       })
     })
   }

@@ -48,7 +48,6 @@ export class AdminProfesionalesComponent implements OnInit {
     })
 
     dialogRef.afterClosed().subscribe( result => {
-      console.log(result);
     })
   }
 

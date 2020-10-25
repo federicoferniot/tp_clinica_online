@@ -37,7 +37,7 @@ export class UsuarioService {
       nombre: usuario.nombre,
       apellido: usuario.apellido,
       correo: usuario.correo,
-      especialidades: usuario.especialidades,
+      especialidades: especialidadesToFirebase(usuario.especialidades),
       role: "profesional",
       estado: "pendiente"
     })
@@ -69,4 +69,21 @@ export class UsuarioService {
       horarios: horarios
     }, {merge: true});
   }
+
+  guardarConfiguracion(uid, especialidades){
+    return this.db.collection('usuarios').doc(uid).update({
+      especialidades: especialidades
+    });
+  }
+}
+
+function especialidadesToFirebase(especialidades){
+  let esp = [];
+  especialidades.forEach(element => {
+    esp.push({
+      especialidad: element.especialidad,
+      duracion: element.duracion
+    });
+  });
+  return esp;
 }

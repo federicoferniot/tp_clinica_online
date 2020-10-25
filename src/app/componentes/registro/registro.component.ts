@@ -8,6 +8,7 @@ import { UsuarioService } from '../../servicios/usuario.service';
 import { Paciente } from '../../clases/paciente'
 import { Profesional } from '../../clases/profesional'
 import * as firebase from 'firebase';
+import { Especialidad } from 'src/app/clases/especialidad';
 
 
 @Component({
@@ -152,7 +153,11 @@ export class RegistroComponent implements OnInit {
     this.loading = true;
     this.authService.register(this.formProfesional.value.correo, this.formProfesional.value.clave)
       .then((data) => {
-        let profesional = new Profesional(data.user.uid, this.formProfesional.value.nombre, this.formProfesional.value.apellido, this.formProfesional.value.correo, this.formProfesional.value.especialidades, 'pendiente', null)
+        let especialidades = [];
+        this.formProfesional.value.especialidades.forEach(element => {
+          especialidades.push(new Especialidad(element, 30));
+        });
+        let profesional = new Profesional(data.user.uid, this.formProfesional.value.nombre, this.formProfesional.value.apellido, this.formProfesional.value.correo, especialidades, 'pendiente', null)
         this.usuarioService.nuevoProfesional(profesional);
         this.alertService.success('Se ha registrado correctamente', { keepAfterRouteChange: true });
         this.router.navigate(['/Login']);

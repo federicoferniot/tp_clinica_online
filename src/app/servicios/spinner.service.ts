@@ -28,7 +28,12 @@ export class SpinnerService {
   }
 
   public hide(): void {
-    this.overlayRef.detach();
-    this.overlayRef = undefined;
+    if(typeof this.overlay === 'undefined'){
+
+    }
+    else{
+      this.overlayRef.detach();
+      this.overlayRef = undefined;
+    }
   }
 }

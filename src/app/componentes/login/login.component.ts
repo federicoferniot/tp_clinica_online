@@ -29,8 +29,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     public dialog: MatDialog,
-    private usuarioService: UsuarioService,
-    private http: HttpClient) { }
+    private usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -127,10 +126,6 @@ export class LoginComponent implements OnInit {
 
   captcha(event){
     this.recaptcha = !(event === null)
-  }
-
-  expire(event){
-    this.recaptcha = false;
   }
 
   openDialog() {

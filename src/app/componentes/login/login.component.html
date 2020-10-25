@@ -21,7 +21,7 @@
             <div *ngIf="f.clave.errors.required">Ingrese una clave</div>
           </div>
         </mat-form-field>
-        <re-captcha (expire)="expire($event)" (resolved)="captcha($event)" required siteKey="6LdhV9sZAAAAAKBXfwzB-7JWhUWuDSGVist-qmi0"></re-captcha>
+        <re-captcha (resolved)="captcha($event)" siteKey="6LdhV9sZAAAAAKBXfwzB-7JWhUWuDSGVist-qmi0"></re-captcha>
       </mat-card-content>
       <mat-card-actions>
         <button [disabled]="loading || !recaptcha" type="submit" mat-raised-button color="primary">

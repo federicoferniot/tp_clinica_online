@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Profesional } from 'src/app/clases/profesional';
 import { AlertService } from 'src/app/servicios/alert.service';
 import { AuthService } from 'src/app/servicios/auth.service';
+import { SpinnerService } from 'src/app/servicios/spinner.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { Dia } from '../../clases/dia'
 
@@ -20,14 +22,22 @@ export class AdministrarHorariosComponent implements OnInit {
   public horahastaS;
   public cargando = false;
   public guardado = false;
+  public profesional;
 
   constructor(
     private usuarioService: UsuarioService,
     private authService: AuthService,
     private alertService: AlertService,
-    private router: Router) { }
+    private router: Router,
+    private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
+    this.cargando = true;
+    this.usuarioService.obtenerUsuario(this.authService.userLoggedIn.uid).subscribe((response)=>{
+      let prof: any = response.payload.data();
+      this.profesional = new Profesional(response.payload.id, prof.nombre, prof.apellido, prof.correo, prof.especialidades, prof.estado, prof.horarios);
+      this.cargando = false;
+    });
     this.idDias.forEach((dia)=>{
       this.dias.push(new Dia(dia, false));
     })
@@ -92,12 +102,13 @@ export class AdministrarHorariosComponent implements OnInit {
     return retorno;
   }
 
-  isCompletedConfig(){
-    return false;
-  }
-
   guardarConfig(){
-
+    this.cargando = true;
+    this.usuarioService.guardarConfiguracion(this.authService.userLoggedIn.uid, this.profesional.especialidades).then((response)=>{
+      this.cargando = false;
+      this.alertService.success('Se ha guardado la configuración correctamente', { keepAfterRouteChange: true });
+      this.router.navigate(['/Principal']);
+    })
   }
 
 }

@@ -1,7 +1,8 @@
 import { Usuario } from './usuario';
+import { Especialidad } from './especialidad'
 
 export class Profesional extends Usuario{
-    public especialidades;
+    public especialidades: Especialidad[];
     public estado;
     public horarios;
     
