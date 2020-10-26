@@ -81,16 +81,16 @@ export class RegistroComponent implements OnInit {
     this.authService.register(this.formPaciente.value.correo, this.formPaciente.value.clave)
       .then(async (data) => {
         this.paciente = new Paciente(data.user.uid, this.formPaciente.value.nombre, this.formPaciente.value.apellido, this.formPaciente.value.correo);
-        this.uploadTaskAsPromise(this.file1).then(()=>{
-          this.uploadTaskAsPromise(this.file2).then(()=>{
+        this.uploadTaskAsPromise(this.file1).then(() => {
+          this.uploadTaskAsPromise(this.file2).then(() => {
             this.usuarioService.nuevoPaciente(this.paciente);
-            this.authService.sendVerificationEmail().then(()=>{
+            this.authService.sendVerificationEmail().then(() => {
               this.alertService.success('Se ha registrado correctamente', { keepAfterRouteChange: true });
               this.router.navigate(['/Login']);
             },
-            (error)=>{
-              console.log(error);
-            });
+              (error) => {
+                console.log(error);
+              });
           });
         });
       })
@@ -102,20 +102,30 @@ export class RegistroComponent implements OnInit {
   }
 
   async uploadTaskAsPromise(imagen) {
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
       let paciente = this.paciente;
       var fotos = this.storageRef.child(ID());
       this.uploadTask = fotos.putString(imagen, 'data_url');
       this.uploadTask.on('state_changed', (snapshot) => {
-  
+
       },
         (error) => {
-  
+
         },
         () => {
           this.uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
             this.paciente.addFoto(downloadURL);
-            resolve("Ok");
+            let metadata = {
+              customMetadata: {
+                'uid': paciente.uid,
+                'nombre': paciente.nombre,
+                'apellido': paciente.apellido
+              }
+            }
+            fotos.updateMetadata(metadata).then((response) => {
+              resolve("Ok");
+            }, (error) => {
+            });
           });
         })
     })
@@ -141,7 +151,7 @@ export class RegistroComponent implements OnInit {
     reader.readAsDataURL(event.srcElement.files[0]);
   }
 
-  registrarProfesional(){
+  registrarProfesional() {
     this.submitted = true;
 
     this.alertService.clear();
