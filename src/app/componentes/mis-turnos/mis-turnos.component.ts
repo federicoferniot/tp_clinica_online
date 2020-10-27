@@ -97,6 +97,7 @@ export class MisTurnosComponent implements OnInit {
         this.spinnerService.hide();
         this.cargandoTurnos = false;
         this.turnos = new MatTableDataSource(this._turnos);
+        this.turnos.paginator = this.paginator;
         this.snackBar.open("Se ha aceptado el turno", "X", {
           duration: 3000,
           panelClass: 'notif-success'
@@ -119,6 +120,7 @@ export class MisTurnosComponent implements OnInit {
         this.cargandoTurnos = false;
         this.spinnerService.hide();
         this.turnos = new MatTableDataSource(this._turnos);
+        this.turnos.paginator = this.paginator;
         this.snackBar.open("Se ha cancelado el turno", "X", {
           duration: 3000,
           panelClass: 'notif-success'
@@ -145,6 +147,7 @@ export class MisTurnosComponent implements OnInit {
         }
       });
       this.turnos = new MatTableDataSource(this._turnos);
+      this.turnos.paginator = this.paginator;
       this.spinnerService.hide();
       this.cargarEncuesta = false;
       this.turnoEncuesta = null;
@@ -191,6 +194,7 @@ export class MisTurnosComponent implements OnInit {
         }
       });
       this.turnos = new MatTableDataSource(this._turnos);
+      this.turnos.paginator = this.paginator;
       this.spinnerService.hide();
       this.cargarReview = false;
       this.turnoReview = null;

@@ -61,7 +61,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumnsProfesional;"></tr>
             <tr mat-footer-row *matFooterRowDef="displayedColumnsProfesional"></tr>
         </table>
-        <mat-paginator class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <mat-paginator *ngIf="role == 'profesional'" class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
     <div class="container" [hidden]="role != 'paciente' || cargandoTurnos || cargandoUsuarios || cargarReview || cargarEncuesta">
         <table [hidden]="cargandoTurnos || cargandoUsuarios" mat-table [dataSource]="turnos" matSort class="mat-elevation-z8 tabla">
@@ -121,7 +121,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumnsPaciente;"></tr>
             <tr mat-footer-row *matFooterRowDef="displayedColumnsPaciente"></tr>
         </table>
-        <mat-paginator class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+        <mat-paginator *ngIf="role == 'paciente'" class="mat-elevation-z8 paginas" [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
     </div>
     <app-cargar-review *ngIf="cargarReview" [turno]="turnoReview" (guardarReview)="reviewGuardada()"></app-cargar-review>
     <app-cargar-encuesta *ngIf="cargarEncuesta" [turno]="turnoEncuesta" (guardarEncuesta)="encuestaGuardada()"></app-cargar-encuesta>

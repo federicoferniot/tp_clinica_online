@@ -6,7 +6,9 @@
 * [Acerca del proyecto](#acerca-del-proyecto)
 * [Acerca de mi](#acerca-de-mi)
 * [Cómo funciona](#cómo-funciona)
-
+* - [Registro](#registro)
+* - [Iniciar sesión](#iniciar-sesión)
+* - [Acciones de usuarios](#acciones-de-usuarios)
 ## Acerca del proyecto
 
 Este proyecto forma parte del trabajo práctico final para la materia Laboratorio IV
@@ -24,6 +26,7 @@ Mi nombre es Ferniot Federico y soy alumno de la UTNFra. Actualmente estoy cursa
 
 ## Cómo funciona
 
+### Registro
 El sistema presenta distintos perfiles de usuarios. El paciente, el profesional y el administrador.
 
 Para poder empezar el usuario paciente o profesional debería registrarse en el sistema.
@@ -36,8 +39,44 @@ El usuario profesional debe completar con sus datos personales y sus especialida
 
 ![registro2](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/registro2.png)
 
+### Iniciar sesión
+
+El usuario deberá ingresar sus credenciales y completar el captcha
+
+![login](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/login.png)
+
+### Acciones de usuarios
+
+#### Administrador
+
 El usuario administrador, al ingresar al sistema podrá autorizar usuarios profesionales y dar da alta nuevos administradores.
 
 ![autorizar](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/autorizar.png)
 
 ![adminalta](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/adminalta.png)
+
+#### Paciente
+
+El usuario paciente podrá solicitar turnos buscando por especialidad y también por el profesional disponible. El turno luego tendrá que ser aceptado por el profesional seleccionado.
+
+![turnos](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/turnos.png)
+
+También tendrá disponible un listado con sus turnos.
+
+![misturnos](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/misturnos.png)
+
+Y notificaciones correspondientes a sus turnos
+
+![notificaciones](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/notificaciones.png)
+
+#### Profesional
+
+El usuario profesional podrá acceder a un listado con sus turnos para poder aceptarlos o rechazarlos. Y también para completar la reseña una vez atendido el paciente.
+
+![misturnos2](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/misturnos2.png)
+
+Y también tendrá la posibilidad de administrar sus horarios, como así también configurar la duración de sus consultas.
+
+![horarios](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/horarios.png)
+
+![duraciones](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/duraciones.png)
