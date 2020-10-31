@@ -57,11 +57,11 @@ El usuario administrador, al ingresar al sistema podrá autorizar usuarios profe
 
 #### Paciente
 
-El usuario paciente podrá solicitar turnos buscando por especialidad y también por el profesional disponible. El turno luego tendrá que ser aceptado por el profesional seleccionado.
+El usuario paciente podrá solicitar turnos seleccionando especialidad y profesional, eligiendo de un listado de turnos disponibles. El turno luego tendrá que ser aceptado por el profesional seleccionado.
 
 ![turnos](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/turnos.png)
 
-También tendrá disponible un listado con sus turnos.
+También tendrá disponible un listado con sus turnos. En el cual podrá ver el estado de sus turnos, ver reseñas o descargarlas.
 
 ![misturnos](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/misturnos.png)
 
