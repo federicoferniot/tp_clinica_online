@@ -25,11 +25,11 @@ const routes: Routes = [
   { path: 'Profesional', component: ProfesionalComponent, data: { allowedRoles: ['profesional'] }, canActivate: [AuthGuard] },
   { path: 'AdministrarProfesionales', component: AdminProfesionalesComponent, data: { allowedRoles: ['admin'] }, canActivate: [AuthGuard] },
   { path: 'AltaAdministrador', component: AltaAdminComponent, data: { allowedRoles: ['admin'] }, canActivate: [AuthGuard] },
-  { path: 'PedirTurno', component: PedirTurnoComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
-  { path: 'MisTurnos', component: MisTurnosComponent, data: {allowedRoles: ['paciente', 'profesional']}, canActivate: [AuthGuard]},
+  { path: 'PedirTurno', component: PedirTurnoComponent, data: { animation: 'Menu', allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
+  { path: 'MisTurnos', component: MisTurnosComponent, data: { allowedRoles: ['paciente', 'profesional']}, canActivate: [AuthGuard]},
   { path: 'AdministrarHorarios', component: AdministrarHorariosComponent, data: {allowedRoles: ['profesional']}, canActivate: [AuthGuard]},
   { path: 'MisDatos', component: MisDatosComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
-  { path: 'Notificaciones', component: NotificacionesComponent,  data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]}
+  { path: 'Notificaciones', component: NotificacionesComponent,  data: { animation: 'Notificacion', allowedRoles: ['paciente']}, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -49,5 +49,53 @@ export const slideInAnimation =
         ])
       ]),
       query(':enter', animateChild()),
+    ]),
+    transition('Usuario => Menu', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [
+        style({ transform: "scale(0)" })
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [
+          animate(1500, style({ transform: "scale(0)" }))
+        ]),
+        query(':enter', [
+          animate(1500, style({ transform: "scale(1)" }))
+        ])
+      ]),
+      query(':enter', animateChild()),
+    ]),
+    transition('Usuario => Notificacion', [
+      style({ position: 'relative' }),
+      query(':enter, :leave', [
+        style({
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%'
+        })
+      ]),
+      query(':enter', [
+        style({ right: '100%'})
+      ]),
+      query(':leave', animateChild()),
+      group([
+        query(':leave', [
+          animate(1, style({ opacity: 0}))
+        ]),
+        query(':enter', [
+          animate('1000ms ease-out', style({ right: '0%'}))
+        ])
+      ]),
+      query(':enter', animateChild()),
     ])
   ]);
