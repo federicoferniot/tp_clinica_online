@@ -1,48 +1,56 @@
 <app-menu></app-menu>
 <div fxLayout="column" fxLayoutAlign="center center">
-  <mat-spinner *ngIf="cargando || cargandoProfesionales || cargandoTurnos"></mat-spinner>
-  <mat-card *ngIf="!cargando && !cargandoProfesionales && !cargandoTurnos && !siguiente">
-    <mat-card-content fxLayout="column">
-      <mat-form-field appearance="fill">
-        <mat-label>Especialidad</mat-label>
-        <mat-select (selectionChange)="filtrarProfesional()" [(ngModel)]="especialidadSeleccionada">
-          <mat-option *ngFor="let especialidad of especialidades" [value]="especialidad">
-            {{especialidad}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Profesional</mat-label>
-        <mat-select [(ngModel)]="profesionalSeleccionado">
-          <mat-option *ngFor="let profesional of profesionales" [value]="profesional">
-            {{profesional.nombre}} {{profesional.apellido}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Elija una fecha</mat-label>
-        <input [(ngModel)]="date" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" disabled>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker disabled="false"></mat-datepicker>
-      </mat-form-field>
-      <button mat-button color="primary" [disabled]="!puedeBuscar()" (click)="buscar()">Buscar Turnos</button>
-      <mat-form-field appearance="fill">
-        <mat-label>Turnos disponibles</mat-label>
-        <mat-select [(ngModel)]="turnoSeleccionado">
-          <mat-optgroup *ngFor="let profesional of turnos"
-            [label]="profesional.profesional.apellido + ' ' + profesional.profesional.nombre">
-            <mat-option [value]="turno" *ngFor="let turno of profesional.turnos">
-              {{turno.hora}}
-            </mat-option>
-          </mat-optgroup>
-        </mat-select>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button [disabled]="turnoSeleccionado == null" (click)="siguientePaso()" mat-raised-button
-        color="primary">Siguiente</button>
-    </mat-card-actions>
-  </mat-card>
-
+  <mat-horizontal-stepper [hidden]="siguiente" linear #stepper>
+    <mat-step [stepControl]="especialidadForm" [editable]="isEditable">
+      <form [formGroup]="especialidadForm">
+        <ng-template matStepLabel>Seleccione la especialidad<br><label *ngIf="especialidadSeleccionada">{{especialidadSeleccionada}}</label></ng-template>
+        <input hidden formControlName="especialidad">
+        <mat-list>
+          <mat-list-item (click)="seleccionarEspecialidad(especialidad)" *ngFor="let especialidad of especialidades" matStepperNext><p>{{especialidad}}</p></mat-list-item>
+        </mat-list>        
+        <div>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="profesionalForm">
+      <form [formGroup]="profesionalForm">
+        <ng-template matStepLabel>Seleccione el profesional<br><label *ngIf="profesionalSeleccionado">{{profesionalSeleccionado.nombre}} {{profesionalSeleccionado.apellido}}</label></ng-template>
+        <input hidden formControlName="profesional">
+        <mat-list>
+          <mat-list-item (click)="seleccionarProfesional(profesional)" *ngFor="let profesional of profesionales" matStepperNext>{{profesional.nombre}} {{profesional.apellido}}</mat-list-item>
+        </mat-list>
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="diaForm">
+      <form [formGroup]="diaForm">
+        <input hidden formControlName="dia">
+        <ng-template matStepLabel>Seleccione el día<br><label *ngIf="diaSeleccionado">{{diaSeleccionado.toLocaleDateString()}}</label></ng-template>
+        <mat-list>
+          <mat-list-item (click)="seleccionarDia(dia)" *ngFor="let dia of dias" matStepperNext>{{dia.toLocaleDateString()}}</mat-list-item>
+        </mat-list>
+        <div>
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-button matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="turnoForm">
+      <form [formGroup]="turnoForm">
+        <input hidden formControlName="turno">
+        <ng-template matStepLabel>Seleccione turno<br><label *ngIf="turnoSeleccionado">{{turnoSeleccionado.hora}}</label></ng-template>
+        <mat-list *ngFor="let profesional of turnos">
+          <mat-list-item (click)="seleccionarTurno(turno)" *ngFor="let turno of profesional.turnos">{{turno.hora}}</mat-list-item>
+        </mat-list>
+        <div>
+          <button mat-button [disabled]="turnoSeleccionado == null" (click)="siguientePaso()">Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
   <app-detalle-turno [hidden]="!siguiente" (guardarClick)="guardar()" [turno]="turnoSeleccionado"></app-detalle-turno>
 </div>

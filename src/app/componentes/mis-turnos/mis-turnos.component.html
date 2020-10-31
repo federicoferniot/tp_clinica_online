@@ -103,6 +103,9 @@
                             <button matTooltip="Ver Reseña" mat-button (click)="ver(element)">
                                 <mat-icon>description</mat-icon>
                             </button>
+                            <button matTooltip="Descargar Reseña" mat-button (click)="descargarReview(element)">
+                                <mat-icon>description</mat-icon>
+                            </button>
                             <button *ngIf="!element.tieneEncuesta" matTooltip="Cargar Encuesta" mat-button (click)="completarEncuesta(element)">
                                 <mat-icon>insert_comment</mat-icon>
                             </button>

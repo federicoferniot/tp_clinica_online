@@ -31,7 +31,8 @@ import { MatRadioModule } from '@angular/material/radio'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { TableModule } from 'primeng/table';
-import { MatBadgeModule } from '@angular/material/badge'
+import { MatBadgeModule } from '@angular/material/badge';
+import {MatStepperModule} from '@angular/material/stepper';
 
 import { AngularFireModule } from "@angular/fire";
 import { AppComponent } from './app.component';
@@ -135,6 +136,7 @@ var firebaseConfig = {
     TableModule,
     HttpClientModule,
     MatBadgeModule,
+    MatStepperModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,

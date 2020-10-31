@@ -37,6 +37,7 @@
     "moment": "^2.29.1",
     "ng-recaptcha": "^6.0.2",
     "ngx-material-timepicker": "^5.5.3",
+    "pdfmake": "^0.1.68",
     "primeng": "^10.0.3",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",

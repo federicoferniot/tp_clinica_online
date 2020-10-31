@@ -15,6 +15,7 @@ import { VerEncuestaComponent } from '../ver-encuesta/ver-encuesta.component';
 import { EncuestaService } from 'src/app/servicios/encuesta.service';
 import { NotificacionService } from '../../servicios/notificacion.service'
 import { Notificacion } from 'src/app/clases/notificacion';
+import { PdfService } from '../../servicios/pdf.service'
 
 @Component({
   selector: 'app-mis-turnos',
@@ -43,7 +44,8 @@ export class MisTurnosComponent implements OnInit {
     private dialog: MatDialog,
     private reviewService: ReviewService,
     private encuestaService: EncuestaService,
-    private notificacionService: NotificacionService) {
+    private notificacionService: NotificacionService,
+    private pdfService: PdfService) {
     this.role = this.authService.getUserRole();
   }
 
@@ -169,6 +171,14 @@ export class MisTurnosComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe( result => {
       })
+    })
+  }
+
+  descargarReview(turno){
+    this.spinnerService.show();
+    this.reviewService.obtenerReview(turno.id).subscribe((response)=>{
+      this.pdfService.generatePdfReview(this.usuarios[turno.profesional], this.usuarios[turno.paciente], response.payload.data());
+      this.spinnerService.hide();
     })
   }
 

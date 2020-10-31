@@ -13,7 +13,8 @@ export class ReviewService {
     return this.db.collection('reviews').doc(review.id).set({
       edad: review.edad,
       temperatura: review.temperatura,
-      detalle: review.detalle
+      detalle: review.detalle,
+      camposAdicionales: review.camposAdicionales
     });
   }
 

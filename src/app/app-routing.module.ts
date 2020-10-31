@@ -18,9 +18,9 @@ import { AuthGuard } from './servicios/auth.guard'
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'Registro', component: RegistroComponent},
-  { path: 'Login', component: LoginComponent},
+  { path: 'Login', component: LoginComponent, data: { animation: 'Login'}},
   { path: 'Usuario', component: ManejarUsuarioComponent},
-  { path: 'Principal', component: PrincipalComponent, data: { allowedRoles: ['admin', 'paciente', 'profesional'] }, canActivate: [AuthGuard] },
+  { path: 'Principal', component: PrincipalComponent, data: { animation: 'Usuario',allowedRoles: ['admin', 'paciente', 'profesional'] }, canActivate: [AuthGuard] },
   { path: 'Paciente', component: PacienteComponent, data: { allowedRoles: ['paciente'] }, canActivate: [AuthGuard] },
   { path: 'Profesional', component: ProfesionalComponent, data: { allowedRoles: ['profesional'] }, canActivate: [AuthGuard] },
   { path: 'AdministrarProfesionales', component: AdminProfesionalesComponent, data: { allowedRoles: ['admin'] }, canActivate: [AuthGuard] },

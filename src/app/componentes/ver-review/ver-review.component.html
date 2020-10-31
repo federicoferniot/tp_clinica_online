@@ -1,5 +1,8 @@
 <mat-list>
-    <mat-list-item>Edad: {{data.edad}}</mat-list-item>
-    <mat-list-item>Temperatura: {{data.temperatura}}</mat-list-item>
-    <mat-list-item>Detalle: {{data.detalle}}</mat-list-item>
+    <mat-list-item><p><b>Edad: </b> {{data.edad}}</p></mat-list-item>
+    <mat-list-item><p><b>Temperatura: </b> {{data.temperatura}}</p></mat-list-item>
+    <mat-list-item><p><b>Detalle: </b> {{data.detalle}}</p></mat-list-item>
+    <div *ngFor="let campo of data.camposAdicionales">
+        <mat-list-item><p><b>{{campo.clave}}: </b> {{campo.valor}}</p></mat-list-item>
+    </div>
 </mat-list>

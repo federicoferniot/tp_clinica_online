@@ -12,6 +12,7 @@ import { Review } from 'src/app/clases/review';
 export class CargarReviewComponent implements OnInit {
   
   public form: FormGroup;
+  public camposAdicionales = [];
   loading = false;
   submitted = false;
 
@@ -35,10 +36,31 @@ export class CargarReviewComponent implements OnInit {
 
   guardar(){
     this.spinnerService.show();
-    this.reviewService.crearReview(new Review(this.turno.id, this.form.value.edad, this.form.value.temperatura, this.form.value.detalle))
+    this.reviewService.crearReview(new Review(this.turno.id, this.form.value.edad, this.form.value.temperatura, this.form.value.detalle, this.camposAdicionales))
     .then(response=>{
       this.guardarReview.emit();
     });
+  }
+
+  esValido(){
+    let retorno = true;
+    this.camposAdicionales.forEach((element)=>{
+      if(element.clave == '' || element.valor == ''){
+        retorno = false;
+      }
+    });
+    return (retorno && this.form.valid);
+  }
+
+  agregarCampo(){
+    this.camposAdicionales.push({
+      'clave': '',
+      'valor': ''
+    });
+  }
+
+  removerItem(indice){
+    this.camposAdicionales.splice(indice, 1);
   }
 
 }
