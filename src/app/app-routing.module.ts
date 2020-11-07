@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminProfesionalesComponent } from './componentes/admin-profesionales/admin-profesionales.component';
 import { AdministrarHorariosComponent } from './componentes/administrar-horarios/administrar-horarios.component';
 import { AltaAdminComponent } from './componentes/alta-admin/alta-admin.component';
+import { InformesComponent } from './componentes/informes/informes.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { ManejarUsuarioComponent } from './componentes/manejar-usuario/manejar-usuario.component';
 import { MisDatosComponent } from './componentes/mis-datos/mis-datos.component';
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'MisTurnos', component: MisTurnosComponent, data: { allowedRoles: ['paciente', 'profesional']}, canActivate: [AuthGuard]},
   { path: 'AdministrarHorarios', component: AdministrarHorariosComponent, data: {allowedRoles: ['profesional']}, canActivate: [AuthGuard]},
   { path: 'MisDatos', component: MisDatosComponent, data: {allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
-  { path: 'Notificaciones', component: NotificacionesComponent,  data: { animation: 'Notificacion', allowedRoles: ['paciente']}, canActivate: [AuthGuard]}
+  { path: 'Notificaciones', component: NotificacionesComponent,  data: { animation: 'Notificacion', allowedRoles: ['paciente']}, canActivate: [AuthGuard]},
+  { path: 'Informes', component: InformesComponent, data: { allowedRoles: ['admin']}, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<mat-grid-list cols="4">
+    <mat-grid-tile colspan=1>
+        <div fxLayout="column">
+            <mat-label>Seleccione el informe a generar</mat-label>
+            <mat-list role="list">
+                <mat-list-item role="listitem" *ngFor="let informe of informes; let i=index" (click)="seleccionar(i)"
+                    [ngClass]="{'seleccionado': informe.seleccionado}">{{informe.nombre}}</mat-list-item>
+            </mat-list>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan=3>
+        <div [hidden]="!mostrarGrafico" fxLayout="column" fxLayoutAlign="center center">
+            <div id="chart">
+                <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="single" [gradient]="gradient"
+                [xAxis]="showXAxis" [yAxis]="showYAxis" [showXAxisLabel]="showXAxisLabel"
+                [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel">
+            </ngx-charts-bar-vertical>
+            </div>
+            <button mat-button color="primary" (click)="download()">Descargar</button>
+        </div>
+        <app-informes-dia-hora (generarEvent)="generarInforme($event)" *ngIf="seleccionado" [horaDia]="requiereHoraDia">
+        </app-informes-dia-hora>
+    </mat-grid-tile>
+</mat-grid-list>

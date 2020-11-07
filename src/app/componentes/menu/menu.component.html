@@ -25,6 +25,9 @@
                 <button *ngIf="role == 'admin'" mat-list-item routerLink="/AltaAdministrador">
                     <span>Añadir Administrador</span>
                 </button>
+                <button *ngIf="role == 'admin'" mat-list-item routerLink="/Informes">
+                    <span>Informes</span>
+                </button>
                 <button *ngIf="role == 'paciente' || role == 'profesional'" mat-list-item routerLink="/MisTurnos">
                     <span>Mis Turnos</span>
                 </button>

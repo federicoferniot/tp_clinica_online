@@ -21,3 +21,7 @@ table tr:nth-child(even) {
 .estado {
     text-transform: capitalize;
 }
+
+.buscar{
+    background-color: whitesmoke;
+}

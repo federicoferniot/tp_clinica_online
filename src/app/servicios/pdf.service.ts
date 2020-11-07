@@ -69,4 +69,9 @@ export class PdfService {
   }};
     this.pdfMake.createPdf(def).download();
   }
+
+  async downloadPdf(definition){
+    await this.loadPdfMaker();
+    this.pdfMake.createPdf(definition).download();
+  }
 }

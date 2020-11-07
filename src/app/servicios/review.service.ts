@@ -10,15 +10,23 @@ export class ReviewService {
   constructor(private db: AngularFirestore) { }
 
   crearReview(review: Review){
-    return this.db.collection('reviews').doc(review.id).set({
-      edad: review.edad,
-      temperatura: review.temperatura,
-      detalle: review.detalle,
-      camposAdicionales: review.camposAdicionales
+    return this.db.collection('turnos').doc(review.id).update({
+      review: this.convertToObject(review),
     });
   }
 
+  convertToObject(review){
+    let objeto = {};
+    objeto['edad'] = review.edad;
+    objeto['temperatura'] = review.temperatura;
+    objeto['detalle'] = review.detalle;
+    review.camposAdicionales.forEach(element => {
+      objeto[element.clave] = element.valor;
+    });
+    return objeto;
+  }
+
   obtenerReview(id){
-    return this.db.collection('reviews').doc(id).snapshotChanges();
+    return this.db.collection('turnos').doc(id).snapshotChanges();
   }
 }

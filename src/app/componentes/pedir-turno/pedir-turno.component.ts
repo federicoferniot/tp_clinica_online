@@ -79,7 +79,7 @@ export class PedirTurnoComponent implements OnInit {
     this.turnoService.obtenerTurnos().subscribe((resultado) => {
       resultado.forEach((el) => {
         if (el.data().estado == 'aceptado' || el.data().estado == 'pendiente') {
-          this._turnosAceptados.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta));
+          this._turnosAceptados.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta, el.data().review));
         }
       });
       this.turnosAceptados = this._turnosAceptados;
@@ -232,7 +232,7 @@ export class PedirTurnoComponent implements OnInit {
         });
         let turnosProfesional = [];
         while (start < end) {
-          turnosProfesional.push(new Turno(null, start.format("HH:mm"), this.profesionalSeleccionado.uid, this.authService.userLoggedIn.uid, this.date, this.especialidadSeleccionada, intervalo, 'pendiente', false));
+          turnosProfesional.push(new Turno(null, start.format("HH:mm"), this.profesionalSeleccionado.uid, this.authService.userLoggedIn.uid, this.date, this.especialidadSeleccionada, intervalo, 'pendiente', false, null));
           start.add(intervalo, 'minute');
         }
         turnosProfesional = turnosProfesional.filter((turno) => {
@@ -273,7 +273,7 @@ export class PedirTurnoComponent implements OnInit {
           });
           let turnosProfesional = [];
           while (start < end) {
-            turnosProfesional.push(new Turno(null, start.format("HH:mm"), prof.uid, this.authService.userLoggedIn.uid, this.date, this.especialidadSeleccionada, intervalo, 'pendiente', false));
+            turnosProfesional.push(new Turno(null, start.format("HH:mm"), prof.uid, this.authService.userLoggedIn.uid, this.date, this.especialidadSeleccionada, intervalo, 'pendiente', false, null));
             start.add(intervalo, 'minute');
           }
           turnosProfesional = turnosProfesional.filter((turno) => {

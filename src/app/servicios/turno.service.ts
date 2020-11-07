@@ -29,8 +29,7 @@ export class TurnoService {
 
   cargarReview(id){
     return this.db.collection('turnos').doc(id).update({
-      estado: 'finalizado',
-      review: true
+      estado: 'finalizado'
     });
   }
   

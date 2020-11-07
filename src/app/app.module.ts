@@ -5,7 +5,6 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -64,6 +63,9 @@ import { NotificacionesComponent } from './componentes/notificaciones/notificaci
 import { VerNotificacionComponent } from './componentes/ver-notificacion/ver-notificacion.component';
 import { RecaptchaModule, RecaptchaV3Module, RECAPTCHA_NONCE, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 import { HttpClientModule } from '@angular/common/http';
+import { InformesComponent } from './componentes/informes/informes.component';
+import { InformesDiaHoraComponent } from './componentes/informes-dia-hora/informes-dia-hora.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -101,7 +103,9 @@ var firebaseConfig = {
     CargarEncuestaComponent,
     VerEncuestaComponent,
     NotificacionesComponent,
-    VerNotificacionComponent
+    VerNotificacionComponent,
+    InformesComponent,
+    InformesDiaHoraComponent
   ],
   imports: [
     RecaptchaModule,
@@ -141,6 +145,7 @@ var firebaseConfig = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    NgxChartsModule,
     NgxMaterialTimepickerModule.setLocale('es')
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-AR' }, {provide: RECAPTCHA_NONCE, useValue: '6LdhV9sZAAAAAKBXfwzB-7JWhUWuDSGVist-qmi0'}],

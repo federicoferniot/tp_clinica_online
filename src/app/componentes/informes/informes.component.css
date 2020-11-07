@@ -1,0 +1,12 @@
+mat-grid-tile{
+    background-color: whitesmoke;
+}
+
+.seleccionado{
+    font-weight: bold;
+}
+
+mat-list-item:hover{
+    font-weight: bold;
+    cursor: pointer;
+}

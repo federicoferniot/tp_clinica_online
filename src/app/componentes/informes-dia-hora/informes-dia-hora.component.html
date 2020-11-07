@@ -1,0 +1,18 @@
+<div *ngIf="horaDia" fxLayout="column">
+    <mat-form-field>
+        <input matInput type="date" [(ngModel)]="diaDesde" placeholder="Día desde">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="time" [(ngModel)]="horaDesde" placeholder="Hora desde">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="date" [(ngModel)]="diaHasta" placeholder="Día hasta">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput type="time" [(ngModel)]="horaHasta" placeholder="Hora hasta">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="generar()">Generar informe</button>
+</div>
+<div *ngIf="!horaDia" fxLayout="column">
+    <button mat-raised-button color="primary" (click)="generar()">Generar informe</button>
+</div>

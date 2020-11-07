@@ -9,6 +9,7 @@ import { RecuperarComponent } from '../recuperar/recuperar.component';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 import { ReCaptchaV3Service } from 'ng-recaptcha';
 import { HttpClient } from '@angular/common/http';
+import { IngresoService } from '../../servicios/ingreso.service'
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private alertService: AlertService,
     public dialog: MatDialog,
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private ingresoService: IngresoService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -78,7 +80,9 @@ export class LoginComponent implements OnInit {
               this.loading = false;
             }
             else {
-              this.router.navigate(['/Principal'])
+              this.ingresoService.guardarIngreso(this.authService.infoUsuario().nombre, this.authService.infoUsuario().apellido, this.authService.userLoggedIn.uid).then(()=>{
+                this.router.navigate(['/Principal'])
+              })
             }
             break;
           case 'admin':

@@ -23,6 +23,7 @@ import { PdfService } from '../../servicios/pdf.service'
   styleUrls: ['./mis-turnos.component.css']
 })
 export class MisTurnosComponent implements OnInit {
+  public busqueda;
   private _turnos = [];
   public usuarios = {};
   public cargandoTurnos = true;
@@ -64,12 +65,12 @@ export class MisTurnosComponent implements OnInit {
         resultado.forEach(el=>{
           if(this.role == 'profesional'){
             if(el.data().profesional == this.authService.userLoggedIn.uid){
-              this._turnos.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta))
+              this._turnos.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta, el.data().review))
             }
           }
           else{
             if(el.data().paciente == this.authService.userLoggedIn.uid){
-              this._turnos.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta))
+              this._turnos.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta, el.data().review))
             }
           }
         });
@@ -162,11 +163,13 @@ export class MisTurnosComponent implements OnInit {
 
   ver(turno){
     this.spinnerService.show();
-    this.reviewService.obtenerReview(turno.id).subscribe((response)=>{
+    this.reviewService.obtenerReview(turno.id).subscribe((response: any)=>{
       this.spinnerService.hide();
+      console.log(response.payload.data().review);
+      console.log(response.payload.data())
       const dialogRef = this.dialog.open(VerReviewComponent, {
         panelClass: 'app-perfil',
-        data: response.payload.data()
+        data: response.payload.data().review
       })
 
       dialogRef.afterClosed().subscribe( result => {
@@ -213,7 +216,37 @@ export class MisTurnosComponent implements OnInit {
         panelClass: 'notif-success'
       });
     });
+  }
 
+  filtrar(){
+    let listaTurnos = [];
+    listaTurnos = this._turnos.filter((element)=>{
+      let coincide = false;
+      if(element.review){
+        Object.keys(element.review).forEach(clave=>{
+          if(element.review[clave].toString().includes(this.busqueda)){
+            coincide = true;
+          }
+        });
+      }
+      return (this.coincideNombreApellido(this.usuarios[element.paciente]) || this.coincideNombreApellido(this.usuarios[element.profesional]) || element.especialidad.includes(this.busqueda) || coincide);
+    })
+    this.turnos = new MatTableDataSource(listaTurnos);
+    this.cargandoTurnos = false;
+    this.turnos.paginator = this.paginator;
+    this.turnos.sort = this.sort;
+  }
+
+  limpiar(){
+    this.busqueda = '';
+    this.turnos = new MatTableDataSource(this._turnos);
+    this.cargandoTurnos = false;
+    this.turnos.paginator = this.paginator;
+    this.turnos.sort = this.sort;
+  }
+
+  coincideNombreApellido(usuario){
+    return (usuario.nombre.includes(this.busqueda) || usuario.apellido.includes(this.busqueda));
   }
 
 }
