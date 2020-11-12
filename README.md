@@ -55,6 +55,10 @@ El usuario administrador, al ingresar al sistema podrá autorizar usuarios profe
 
 ![adminalta](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/adminalta.png)
 
+También podrá generar distintos tipos de informes y descargarlos a un documento.
+
+![informes](https://github.com/federicoferniot/tp_clinica_online/blob/main/screenshots/informes.png)
+
 #### Paciente
 
 El usuario paciente podrá solicitar turnos seleccionando especialidad y profesional, eligiendo de un listado de turnos disponibles. El turno luego tendrá que ser aceptado por el profesional seleccionado.

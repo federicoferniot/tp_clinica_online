@@ -15,10 +15,10 @@
     </mat-step>
     <mat-step [stepControl]="profesionalForm">
       <form [formGroup]="profesionalForm">
-        <ng-template matStepLabel>Seleccione el profesional<br><label *ngIf="profesionalSeleccionado">{{profesionalSeleccionado.nombre}} {{profesionalSeleccionado.apellido}}</label></ng-template>
+        <ng-template matStepLabel>Seleccione el profesional<br><label *ngIf="profesionalSeleccionado">{{profesionalSeleccionado | nombre: true}}</label></ng-template>
         <input hidden formControlName="profesional">
         <mat-list>
-          <mat-list-item (click)="seleccionarProfesional(profesional)" *ngFor="let profesional of profesionales" matStepperNext>{{profesional.nombre}} {{profesional.apellido}}</mat-list-item>
+          <mat-list-item (click)="seleccionarProfesional(profesional)" *ngFor="let profesional of profesionales" matStepperNext>{{profesional | nombre}}</mat-list-item>
         </mat-list>
         <div>
           <button mat-button matStepperPrevious>Atras</button>

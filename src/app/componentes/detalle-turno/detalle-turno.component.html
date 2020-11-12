@@ -6,7 +6,7 @@
             <mat-list>
                 <mat-list-item>Hora: {{turno.hora}}</mat-list-item>
                 <mat-list-item>Especialidad: {{turno.especialidad}}</mat-list-item>
-                <mat-list-item>Profesional: {{profesionales[turno.profesional].nombre}} {{profesionales[turno.profesional].apellido}}</mat-list-item>
+                <mat-list-item>Profesional: {{profesionales[turno.profesional].nombre | nombre}}</mat-list-item>
                 <mat-list-item>Día: {{turno.dia.toLocaleDateString()}}</mat-list-item>
                 <mat-list-item>Duración: {{turno.duracion}} minutos</mat-list-item>
             </mat-list>

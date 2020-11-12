@@ -66,6 +66,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InformesComponent } from './componentes/informes/informes.component';
 import { InformesDiaHoraComponent } from './componentes/informes-dia-hora/informes-dia-hora.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NombrePipe } from './clases/nombre-pipe'
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -86,6 +87,7 @@ var firebaseConfig = {
     PacienteComponent,
     ProfesionalComponent,
     AlertComponent,
+    NombrePipe,
     RegistroComponent,
     MenuComponent,
     MisTurnosComponent,

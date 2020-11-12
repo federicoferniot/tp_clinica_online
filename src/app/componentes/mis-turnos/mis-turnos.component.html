@@ -21,8 +21,7 @@
             </ng-container>
             <ng-container matColumnDef="paciente">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Paciente</th>
-                <td mat-cell *matCellDef="let element">{{usuarios[element.paciente].nombre}}
-                    {{usuarios[element.paciente].apellido}}</td>
+                <td mat-cell *matCellDef="let element">{{usuarios[element.paciente] | nombre}}</td>
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
             <ng-container matColumnDef="estado">
@@ -97,8 +96,7 @@
             </ng-container>
             <ng-container matColumnDef="profesional">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Profesional</th>
-                <td mat-cell *matCellDef="let element">{{usuarios[element.profesional].nombre}}
-                    {{usuarios[element.profesional].apellido}}</td>
+                <td mat-cell *matCellDef="let element">{{usuarios[element.profesional] | nombre}}</td>
                 <td mat-footer-cell *matFooterCellDef></td>
             </ng-container>
             <ng-container matColumnDef="estado">

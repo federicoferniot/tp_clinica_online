@@ -10,8 +10,7 @@ import { SpinnerService } from 'src/app/servicios/spinner.service';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
-  public nombre;
-  public apellido;
+  public info;
   public role;
   public notificaciones;
   public cantNoLeidas = 0;
@@ -21,8 +20,7 @@ export class PrincipalComponent implements OnInit {
     private authService: AuthService,
     private notificacionService: NotificacionService,
     private spinnerService: SpinnerService) {
-    this.nombre = this.authService.infoUsuario().nombre;
-    this.apellido = this.authService.infoUsuario().apellido;
+    this.info = this.authService.infoUsuario();
     this.role = this.authService.infoUsuario().role;
     if(this.role == 'paciente'){
       let cantidad = 0;
