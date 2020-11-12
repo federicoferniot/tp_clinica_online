@@ -10,7 +10,6 @@
             <button mat-button color="secondary" [disabled]="busqueda == ''" (click)="filtrar()">Buscar</button>
             <button mat-button color="secondary" (click)="limpiar()">Limpiar</button>
         </div>
-        <button mat-button color="secondary">Buscar</button>
         <table [hidden]="cargandoTurnos || cargandoUsuarios" mat-table [dataSource]="turnos" matSort
             class="mat-elevation-z8 tabla">
             <ng-container matColumnDef="fecha">
