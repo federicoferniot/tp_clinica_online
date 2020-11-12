@@ -2,10 +2,14 @@
 <div class="container" fxLayout="column" fxLayoutAlign="none center">
     <div class="container"
         [hidden]="cargandoTurnos || cargandoUsuarios || role != 'profesional' || cargarReview || cargarEncuesta">
-        <mat-form-field class="example-form-field">
-            <mat-label>Clearable input</mat-label>
-            <input matInput type="text" [(ngModel)]="busqueda">
-        </mat-form-field>
+        <div class="buscar">
+            <mat-form-field class="example-form-field">
+                <mat-label>Filtrar</mat-label>
+                <input matInput type="text" [(ngModel)]="busqueda">
+            </mat-form-field>
+            <button mat-button color="secondary" [disabled]="busqueda == ''" (click)="filtrar()">Buscar</button>
+            <button mat-button color="secondary" (click)="limpiar()">Limpiar</button>
+        </div>
         <button mat-button color="secondary">Buscar</button>
         <table [hidden]="cargandoTurnos || cargandoUsuarios" mat-table [dataSource]="turnos" matSort
             class="mat-elevation-z8 tabla">
