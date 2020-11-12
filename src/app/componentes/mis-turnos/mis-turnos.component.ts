@@ -246,7 +246,8 @@ export class MisTurnosComponent implements OnInit {
   }
 
   coincideNombreApellido(usuario){
-    return (usuario.nombre.includes(this.busqueda) || usuario.apellido.includes(this.busqueda));
+    let string = usuario.nombre + " " + usuario.apellido;
+    return (string.includes(this.busqueda));
   }
 
 }
