@@ -22,14 +22,10 @@ export class PdfService {
   async generatePdfReview(profesional, paciente, review) {
     await this.loadPdfMaker();
     let datos = [];
-    datos.push(`Edad: ${review.edad}`);
-    datos.push(`Temperatura: ${review.temperatura}`);
-    datos.push(`Detalle: ${review.detalle}`);
-    if(review.camposAdicionales){
-      review.camposAdicionales.forEach(element => {
-        datos.push(`${element.clave}: ${element.valor}`);
-      });
-    }
+    debugger;
+    Object.keys(review.review).forEach((key)=>{
+      datos.push(`${key}: ${review.review[key]}`)
+    });
     const def = { content: [{ text: [{text: 'Reseña Clínica Online Ferniot Federico', style: 'header'}], style: 'texto'},{
       text: `Esta reseña ha sido cargada por el Profesional ${profesional.nombre} ${profesional.apellido}. Si tiene alguna consulta, por favor contáctese al instante en los horarios de atención. Muchas gracias.`
     , style: 'texto'},'Reseña: ', {
