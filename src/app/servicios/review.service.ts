@@ -17,9 +17,10 @@ export class ReviewService {
 
   convertToObject(review){
     let objeto = {};
-    objeto['edad'] = review.edad;
-    objeto['temperatura'] = review.temperatura;
-    objeto['detalle'] = review.detalle;
+    objeto['Edad'] = review.edad;
+    objeto['Temperatura'] = review.temperatura;
+    objeto['Presión'] = review.presion;
+    objeto['Detalle'] = review.detalle;
     review.camposAdicionales.forEach(element => {
       objeto[element.clave] = element.valor;
     });

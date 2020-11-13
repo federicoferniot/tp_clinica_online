@@ -1,15 +1,17 @@
 export class Review {
     public id;
-    public Edad;
-    public Temperatura;
-    public Detalle;
-    public CamposAdicionales;
+    public edad;
+    public temperatura;
+    public presion;
+    public detalle;
+    public camposAdicionales;
 
-    constructor(id, edad, temperatura, detalle, camposAdicionales=null){
+    constructor(id, edad, temperatura, presion, detalle, camposAdicionales=null){
         this.id = id;
-        this.Edad = edad;
-        this.Temperatura = temperatura;
-        this.Detalle = detalle;
-        this.CamposAdicionales = camposAdicionales;
+        this.edad = edad;
+        this.temperatura = temperatura;
+        this.presion = presion;
+        this.detalle = detalle;
+        this.camposAdicionales = camposAdicionales;
     }
 }

@@ -66,7 +66,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InformesComponent } from './componentes/informes/informes.component';
 import { InformesDiaHoraComponent } from './componentes/informes-dia-hora/informes-dia-hora.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { NombrePipe } from './clases/nombre-pipe'
+import { NombrePipe } from './clases/nombre-pipe';
+import { DestacarDirective } from './directivas/destacar.directive'
 
 var firebaseConfig = {
   apiKey: "AIzaSyBKpKdgLpf92eV9Uv6xRywYHf-gu3E-_-k",
@@ -107,7 +108,8 @@ var firebaseConfig = {
     NotificacionesComponent,
     VerNotificacionComponent,
     InformesComponent,
-    InformesDiaHoraComponent
+    InformesDiaHoraComponent,
+    DestacarDirective
   ],
   imports: [
     RecaptchaModule,

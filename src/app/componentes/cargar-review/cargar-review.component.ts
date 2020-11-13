@@ -28,6 +28,7 @@ export class CargarReviewComponent implements OnInit {
     this.form = this.formBuilder.group({
       edad: ['', Validators.required],
       temperatura: ['', Validators.required],
+      presion: ['', Validators.required],
       detalle: ['', Validators.required]
     });
   }
@@ -36,7 +37,7 @@ export class CargarReviewComponent implements OnInit {
 
   guardar(){
     this.spinnerService.show();
-    this.reviewService.crearReview(new Review(this.turno.id, this.form.value.edad, this.form.value.temperatura, this.form.value.detalle, this.camposAdicionales))
+    this.reviewService.crearReview(new Review(this.turno.id, this.form.value.edad, this.form.value.temperatura, this.form.value.presion,this.form.value.detalle, this.camposAdicionales))
     .then(response=>{
       this.guardarReview.emit();
     });

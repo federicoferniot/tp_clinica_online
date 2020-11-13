@@ -18,8 +18,16 @@
                     <mat-label>Temperatura corporal</mat-label>
                     <input formControlName="temperatura" matInput type="number"
                         [ngClass]="{ 'is-invalid': submitted && f.temperatura.errors }">
-                    <div *ngIf="submitted && f.clave.errors" class="invalid-feedback">
+                    <div *ngIf="submitted && f.temperatura.errors" class="invalid-feedback">
                         <div *ngIf="f.temperatura.errors.required">Ingrese una temperatura</div>
+                    </div>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Presión</mat-label>
+                    <input formControlName="presion" matInput type="number"
+                        [ngClass]="{ 'is-invalid': submitted && f.presion.errors }">
+                    <div *ngIf="submitted && f.presion.errors" class="invalid-feedback">
+                        <div *ngIf="f.presion.errors.required">Ingrese una presión</div>
                     </div>
                 </mat-form-field>
                 <mat-form-field appearance="outline">

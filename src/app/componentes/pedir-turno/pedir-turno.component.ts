@@ -78,7 +78,7 @@ export class PedirTurnoComponent implements OnInit {
     })
     this.turnoService.obtenerTurnos().subscribe((resultado) => {
       resultado.forEach((el) => {
-        if (el.data().estado == 'aceptado' || el.data().estado == 'pendiente') {
+        if (el.data().estado == 'aceptado' || el.data().estado == 'pendiente' || el.data().estado == 'finalizado') {
           this._turnosAceptados.push(new Turno(el.id, el.data().hora, el.data().profesional, el.data().paciente, el.data().dia, el.data().especialidad, el.data().duracion, el.data().estado, el.data().tieneEncuesta, el.data().review));
         }
       });
@@ -209,7 +209,11 @@ export class PedirTurnoComponent implements OnInit {
       });
     }
     this.turnosAceptados = this.turnosAceptados.filter(turno => {
-      return turno.dia.toDate().getTime() === this.date.getTime()
+      let turno1 = turno.dia.toDate();
+      let turno2 = this.date;
+      turno1.setHours(0,0,0,0);
+      turno2.setHours(0,0,0,0);
+      return turno1.getTime() === turno2.getTime()
     })
   }
 
@@ -280,7 +284,6 @@ export class PedirTurnoComponent implements OnInit {
             let turnoOcupado = false;
             this.turnosAceptados.forEach((turnoAceptado) => {
               if (turnoAceptado.profesional == turno.profesional) {
-                debugger;
                 let momentAceptadoInicio = moment().hours(turnoAceptado.hora.split(':')[0]).minutes(turnoAceptado.hora.split(':')[1]).seconds(0);
                 let momentAceptadoFin = moment().hours(turnoAceptado.hora.split(':')[0]).minutes(turnoAceptado.hora.split(':')[1]).seconds(0);
                 momentAceptadoFin.add(turnoAceptado.duracion, 'minute');
@@ -326,7 +329,10 @@ export class PedirTurnoComponent implements OnInit {
 }
 
 function addDays(date, days) {
+  console.log(date);
   var result = new Date(date);
+  console.log(result);
   result.setDate(result.getDate() + days);
+  console.log(result);
   return result;
 }
