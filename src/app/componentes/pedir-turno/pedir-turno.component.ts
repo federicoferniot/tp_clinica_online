@@ -307,7 +307,6 @@ export class PedirTurnoComponent implements OnInit {
   }
 
   siguientePaso() {
-    console.log(this.turnoSeleccionado);
     this.siguiente = true;
   }
 
@@ -329,10 +328,7 @@ export class PedirTurnoComponent implements OnInit {
 }
 
 function addDays(date, days) {
-  console.log(date);
   var result = new Date(date);
-  console.log(result);
   result.setDate(result.getDate() + days);
-  console.log(result);
   return result;
 }
